@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    container_name: counter_app
+    ports:
+      - "3005:3000"
+    volumes:
+      - sqlite-data:/data
+    environment:
+      - DATABASE_URL=file:/data/dev.db
+      - NODE_ENV=production
+      - PORT=3000
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=http://localhost:3005
+    restart: unless-stopped
+
+volumes:
+  sqlite-data:

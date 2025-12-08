@@ -1,0 +1,21 @@
+node_modules
+.next
+out
+.git
+.gitignore
+Dockerfile*
+docker-compose*
+.env*
+.devcontainer
+.vscode
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+coverage
+*.local
+*.swp
+
+# Prisma local SQLite files (if any in repo)
+prisma/dev.db
+prisma/*.db
