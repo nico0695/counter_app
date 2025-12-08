@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import styles from "./login.module.scss";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -25,21 +26,42 @@ export default function LoginPage() {
   };
 
   return (
-    <main style={{ display: 'grid', placeItems: 'center', minHeight: '100dvh' }}>
-      <form onSubmit={onSubmit} style={{ display: 'grid', gap: 12, minWidth: 320 }}>
-        <h2>Ingresar / Registrarse</h2>
-        <label>
-          Email
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <main className={styles.wrapper}>
+      <form className={styles.card} onSubmit={onSubmit}>
+        <h2 className={styles.title}>Ingresar / Registrarse</h2>
+
+        <label className={styles.field}>
+          <span>Email</span>
+          <input
+            className={styles.input}
+            type="email"
+            placeholder="tu@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            autoComplete="email"
+            inputMode="email"
+          />
         </label>
-        <label>
-          Contraseña
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+        <label className={styles.field}>
+          <span>Contraseña</span>
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="Mínimo 6 caracteres"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            autoComplete="current-password"
+          />
         </label>
-        {error && <p style={{ color: 'crimson' }}>{error}</p>}
-        <button type="submit">Continuar</button>
+
+        {error && <p className={styles.error}>{error}</p>}
+
+        <button className={styles.submit} type="submit">Continuar</button>
+        <p className={styles.hint}>Si el email no existe, se creará una cuenta automáticamente.</p>
       </form>
     </main>
   );
 }
-
