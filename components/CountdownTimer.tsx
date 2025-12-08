@@ -70,7 +70,6 @@ export default function CountdownTimer({
   const [videoError, setVideoError] = useState(false);
   const canUseVideo = isVideo && rawBg.length > 0 && !videoError;
 
-  console.log('canUseVideo= ', canUseVideo);
   return (
     <div className={styles.container}>
       {canUseVideo ? (

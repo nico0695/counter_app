@@ -1,0 +1,6 @@
+.container { display: grid; grid-template-rows: auto 1fr; min-height: 100dvh; }
+.header { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(180%) blur(6px); border-bottom: 1px solid #1e2024; background: color-mix(in oklab, #0b0b0c 85%, #fff 15% / 65%); }
+.nav { display: flex; gap: 12px; align-items: center; padding: 12px 20px; }
+.link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #2a2d33; border-radius: 8px; color: #e7e7ea; text-decoration: none; background: #111216; font-size: 13px; }
+.link:hover { background: #14161b; border-color: #3a3f47; }
+.content { min-height: 0; }
