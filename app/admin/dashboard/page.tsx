@@ -39,6 +39,7 @@ export default async function DashboardPage() {
                     targetDate: c.targetDate.toISOString(),
                     timezone: c.timezone,
                     slug: c.slug,
+                    counter: (c as any).counter ?? null,
                   }} />
                 </div>
                 {c.description ? (

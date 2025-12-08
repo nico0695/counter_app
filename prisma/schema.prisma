@@ -24,6 +24,7 @@ model Counter {
   bgUrl      String?
   posterUrl  String?
   mediaType  String   @default("IMAGE")
+  counter    String?
   targetDate DateTime
   timezone   String
   userId     String

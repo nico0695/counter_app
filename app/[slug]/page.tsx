@@ -15,6 +15,7 @@ export default async function CounterLanding({ params }: Props) {
       bgUrl: true,
       posterUrl: true,
       mediaType: true,
+      counter: true,
       targetDate: true,
       timezone: true,
       userId: true,
@@ -33,6 +34,7 @@ export default async function CounterLanding({ params }: Props) {
       posterUrl={counter.posterUrl ?? null}
       targetDateISO={counter.targetDate.toISOString()}
       eventTimezone={counter.timezone}
+      counterId={(counter as any).counter ?? undefined}
     />
   );
 }

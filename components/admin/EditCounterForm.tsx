@@ -5,6 +5,7 @@ import styles from "./CreateCounterForm.module.scss";
 import { useFormState, useFormStatus } from "react-dom";
 import { formatInTimeZone } from "date-fns-tz";
 import React from "react";
+import { counterOptions, defaultCounterId } from "@/lib/counterOptions";
 
 type Counter = {
   id: string;
@@ -15,6 +16,7 @@ type Counter = {
   mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
   targetDate: string; // ISO
   timezone: string;
+  counter?: string | null;
 };
 
 export default function EditCounterForm({ counter, onSuccess }: { counter: Counter; onSuccess?: () => void }) {
@@ -85,6 +87,15 @@ export default function EditCounterForm({ counter, onSuccess }: { counter: Count
       <div className={styles.field}>
         <label htmlFor={`poster-${counter.id}`}>URL poster (opcional)</label>
         <input id={`poster-${counter.id}`} name="posterUrl" type="url" defaultValue={counter.posterUrl ?? ''} className={styles.input} />
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor={`counter-${counter.id}`}>Estilo de contador</label>
+        <select id={`counter-${counter.id}`} name="counter" defaultValue={counter.counter ?? defaultCounterId} className={styles.input}>
+          {counterOptions.map((opt) => (
+            <option key={opt.id} value={opt.id}>{opt.name}</option>
+          ))}
+        </select>
       </div>
 
       <div className={styles.field}>

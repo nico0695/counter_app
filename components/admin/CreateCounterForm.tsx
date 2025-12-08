@@ -4,6 +4,7 @@ import { createCounterAction } from "@/app/admin/actions";
 import { useTimezoneStore } from "@/store/timezone";
 import styles from "./CreateCounterForm.module.scss";
 import { useFormState, useFormStatus } from "react-dom";
+import { counterOptions, defaultCounterId } from "@/lib/counterOptions";
 
 type Props = { onSuccess?: () => void };
 
@@ -79,6 +80,15 @@ export default function CreateCounterForm({ onSuccess }: Props) {
       <div className={styles.field}>
         <label htmlFor="posterUrl">URL poster (opcional)</label>
         <input id="posterUrl" name="posterUrl" type="url" placeholder="https://... (para video o fallback)" className={styles.input} />
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="counter">Estilo de contador</label>
+        <select id="counter" name="counter" defaultValue={defaultCounterId} className={styles.input}>
+          {counterOptions.map((opt) => (
+            <option key={opt.id} value={opt.id}>{opt.name}</option>
+          ))}
+        </select>
       </div>
 
       <div className={styles.field}>

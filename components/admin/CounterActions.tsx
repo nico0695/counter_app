@@ -17,6 +17,7 @@ type Counter = {
   targetDate: string; // ISO
   timezone: string;
   slug: string;
+  counter?: string | null;
 };
 
 export default function CounterActions({ counter }: { counter: Counter }) {

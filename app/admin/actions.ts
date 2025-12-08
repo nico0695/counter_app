@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { fromZonedTime } from "date-fns-tz";
 import { hash } from "bcryptjs";
+import { counterOptions, defaultCounterId } from "@/lib/counterOptions";
 
 function slugify(input: string) {
   return input
@@ -28,6 +29,7 @@ export async function createCounter(formData: FormData) {
   const mediaTypeRaw = String(formData.get('mediaType') || 'image').trim().toLowerCase();
   const date = String(formData.get('date') || '').trim(); // local datetime from input
   const timezone = String(formData.get('timezone') || '').trim();
+  const counterId = String(formData.get('counter') || '').trim();
 
   if (!title || !date || !timezone) {
     throw new Error('Datos inválidos');
@@ -42,6 +44,8 @@ export async function createCounter(formData: FormData) {
   }
 
   const utcDate = fromZonedTime(date, timezone);
+  const validIds = new Set(counterOptions.map(o => o.id));
+  const selectedCounter = validIds.has(counterId) ? counterId : defaultCounterId;
 
   await prisma.counter.create({
     data: {
@@ -51,6 +55,7 @@ export async function createCounter(formData: FormData) {
       bgUrl: bgUrl || null,
       posterUrl: posterUrl || null,
       mediaType: mediaType as any,
+      counter: selectedCounter,
       targetDate: utcDate,
       timezone,
       userId,
@@ -86,6 +91,7 @@ export async function updateCounter(formData: FormData) {
   const mediaTypeRaw = String(formData.get('mediaType') || 'image').trim().toLowerCase();
   const date = String(formData.get('date') || '').trim();
   const timezone = String(formData.get('timezone') || '').trim();
+  const counterId = String(formData.get('counter') || '').trim();
 
   if (!id || !title || !date || !timezone) throw new Error('Datos inválidos');
 
@@ -94,6 +100,8 @@ export async function updateCounter(formData: FormData) {
 
   const utcDate = fromZonedTime(date, timezone);
   const mediaType = mediaTypeRaw === 'video' ? 'VIDEO' : 'IMAGE';
+  const validIds = new Set(counterOptions.map(o => o.id));
+  const selectedCounter = validIds.has(counterId) ? counterId : undefined;
 
   await prisma.counter.update({
     where: { id },
@@ -105,6 +113,7 @@ export async function updateCounter(formData: FormData) {
       mediaType: mediaType as any,
       targetDate: utcDate,
       timezone,
+      ...(selectedCounter ? { counter: selectedCounter } : {}),
     },
   });
 }

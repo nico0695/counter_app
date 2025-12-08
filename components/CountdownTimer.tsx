@@ -3,7 +3,8 @@ import styles from '@/components/CountdownTimer.module.scss';
 import { useMemo, useState } from 'react';
 import { formatInTimeZone } from 'date-fns-tz';
 import { useTimezoneStore } from '@/store/timezone';
-import { counterVariants } from '@/components/counters';
+import { counterMap } from '@/components/counters';
+import { defaultCounterId } from '@/lib/counterOptions';
 
 export default function CountdownTimer({
   title,
@@ -13,6 +14,7 @@ export default function CountdownTimer({
   posterUrl,
   targetDateISO,
   eventTimezone,
+  counterId,
 }: {
   title: string;
   description?: string | null;
@@ -21,11 +23,12 @@ export default function CountdownTimer({
   posterUrl?: string | null;
   targetDateISO: string; // stored in UTC
   eventTimezone: string; // original event timezone for display
+  counterId?: string;
 }) {
   const tz = useTimezoneStore((s) => s.timezone);
   const setTimezone = useTimezoneStore((s) => s.setTimezone);
-  const [selectedCounterIndex] = useState<number>(1); // 0: colon, 1: blocks
-  const ActiveCounter = counterVariants[selectedCounterIndex].Component;
+  const effectiveId = (counterId && counterMap[counterId]) ? counterId : defaultCounterId;
+  const ActiveCounter = counterMap[effectiveId];
   const formattedTarget = useMemo(() => {
     try {
       return formatInTimeZone(
