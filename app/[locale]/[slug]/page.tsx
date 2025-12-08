@@ -24,6 +24,12 @@ export default async function CounterLanding({ params }: Props) {
       createdAt: true,
       updatedAt: true,
       enabled: true,
+      twitter: true,
+      instagram: true,
+      tiktok: true,
+      facebook: true,
+      externalLink1: true,
+      externalLink2: true,
     },
   });
   if (!counter || !counter.enabled) return notFound();
@@ -37,6 +43,12 @@ export default async function CounterLanding({ params }: Props) {
       targetDateISO={counter.targetDate.toISOString()}
       eventTimezone={counter.timezone}
       counterId={(counter as any).counter ?? undefined}
+      twitter={counter.twitter}
+      instagram={counter.instagram}
+      tiktok={counter.tiktok}
+      facebook={counter.facebook}
+      externalLink1={counter.externalLink1}
+      externalLink2={counter.externalLink2}
     />
   );
 }

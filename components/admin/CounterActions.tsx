@@ -18,6 +18,12 @@ type Counter = {
   timezone: string;
   slug: string;
   counter?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
+  tiktok?: string | null;
+  facebook?: string | null;
+  externalLink1?: string | null;
+  externalLink2?: string | null;
 };
 
 export default function CounterActions({ counter }: { counter: Counter }) {

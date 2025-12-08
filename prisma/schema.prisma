@@ -31,6 +31,12 @@ model Counter {
   userId     String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   enabled    Boolean  @default(true)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  twitter       String?
+  instagram     String?
+  tiktok        String?
+  facebook      String?
+  externalLink1 String?
+  externalLink2 String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

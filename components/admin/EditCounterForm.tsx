@@ -17,6 +17,12 @@ type Counter = {
   targetDate: string; // ISO
   timezone: string;
   counter?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
+  tiktok?: string | null;
+  facebook?: string | null;
+  externalLink1?: string | null;
+  externalLink2?: string | null;
 };
 
 export default function EditCounterForm({ counter, onSuccess }: { counter: Counter; onSuccess?: () => void }) {
@@ -57,51 +63,83 @@ export default function EditCounterForm({ counter, onSuccess }: { counter: Count
     >
       <input type="hidden" name="id" defaultValue={counter.id} />
 
-      <div className={styles.field}>
+      <div className={styles.fieldFullWidth}>
         <label htmlFor={`title-${counter.id}`}>Título</label>
         <input id={`title-${counter.id}`} name="title" required minLength={3} maxLength={80} defaultValue={counter.title} className={styles.input} />
       </div>
 
-      <div className={styles.field}>
+      <div className={styles.fieldFullWidth}>
         <label htmlFor={`desc-${counter.id}`}>Descripción</label>
         <input id={`desc-${counter.id}`} name="description" maxLength={160} defaultValue={counter.description ?? ''} className={styles.input} />
       </div>
 
-      <fieldset className={styles.field}>
-        <legend>Fondo</legend>
-        <div style={{ display: 'flex', gap: 12 }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <input type="radio" name="mediaType" value="image" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'IMAGE' || (counter.mediaType ?? 'image') === 'image'} /> Imagen
-          </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <input type="radio" name="mediaType" value="video" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video'} /> Video
-          </label>
+      <div className={styles.formGrid}>
+        <div className={styles.field}>
+          <label htmlFor={`date-${counter.id}`}>Fecha y hora del evento (local)</label>
+          <input id={`date-${counter.id}`} name="date" type="datetime-local" required defaultValue={localDateValue} className={styles.input} />
+        </div>
+
+        <div className={styles.field}>
+          <label htmlFor={`counter-${counter.id}`}>Estilo de contador</label>
+          <select id={`counter-${counter.id}`} name="counter" defaultValue={counter.counter ?? defaultCounterId} className={styles.input}>
+            {counterOptions.map((opt) => (
+              <option key={opt.id} value={opt.id}>{opt.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <fieldset className={styles.field}>
+          <legend>Fondo</legend>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <input type="radio" name="mediaType" value="image" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'IMAGE' || (counter.mediaType ?? 'image') === 'image'} /> Imagen
+            </label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <input type="radio" name="mediaType" value="video" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video'} /> Video
+            </label>
+          </div>
+        </fieldset>
+
+        <div className={styles.field}>
+          <label htmlFor={`bg-${counter.id}`}>URL del fondo (opcional)</label>
+          <input id={`bg-${counter.id}`} name="bgUrl" type="url" defaultValue={counter.bgUrl ?? ''} className={styles.input} />
+        </div>
+
+        <div className={styles.field}>
+          <label htmlFor={`poster-${counter.id}`}>URL poster (opcional)</label>
+          <input id={`poster-${counter.id}`} name="posterUrl" type="url" defaultValue={counter.posterUrl ?? ''} className={styles.input} />
+        </div>
+      </div>
+
+      <fieldset className={styles.fieldFullWidth}>
+        <legend>Redes Sociales (opcional)</legend>
+        <div className={styles.formGrid}>
+          <div className={styles.field}>
+            <label htmlFor={`twitter-${counter.id}`}>Twitter (X)</label>
+            <input id={`twitter-${counter.id}`} name="twitter" type="url" placeholder="https://twitter.com/usuario" defaultValue={counter.twitter ?? ''} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`instagram-${counter.id}`}>Instagram</label>
+            <input id={`instagram-${counter.id}`} name="instagram" type="url" placeholder="https://instagram.com/usuario" defaultValue={counter.instagram ?? ''} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`tiktok-${counter.id}`}>TikTok</label>
+            <input id={`tiktok-${counter.id}`} name="tiktok" type="url" placeholder="https://tiktok.com/@usuario" defaultValue={counter.tiktok ?? ''} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`facebook-${counter.id}`}>Facebook</label>
+            <input id={`facebook-${counter.id}`} name="facebook" type="url" placeholder="https://facebook.com/usuario" defaultValue={counter.facebook ?? ''} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`externalLink1-${counter.id}`}>Enlace Externo 1</label>
+            <input id={`externalLink1-${counter.id}`} name="externalLink1" type="url" placeholder="https://ejemplo.com" defaultValue={counter.externalLink1 ?? ''} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`externalLink2-${counter.id}`}>Enlace Externo 2</label>
+            <input id={`externalLink2-${counter.id}`} name="externalLink2" type="url" placeholder="https://ejemplo.com" defaultValue={counter.externalLink2 ?? ''} className={styles.input} />
+          </div>
         </div>
       </fieldset>
-
-      <div className={styles.field}>
-        <label htmlFor={`bg-${counter.id}`}>URL del fondo (opcional)</label>
-        <input id={`bg-${counter.id}`} name="bgUrl" type="url" defaultValue={counter.bgUrl ?? ''} className={styles.input} />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor={`poster-${counter.id}`}>URL poster (opcional)</label>
-        <input id={`poster-${counter.id}`} name="posterUrl" type="url" defaultValue={counter.posterUrl ?? ''} className={styles.input} />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor={`counter-${counter.id}`}>Estilo de contador</label>
-        <select id={`counter-${counter.id}`} name="counter" defaultValue={counter.counter ?? defaultCounterId} className={styles.input}>
-          {counterOptions.map((opt) => (
-            <option key={opt.id} value={opt.id}>{opt.name}</option>
-          ))}
-        </select>
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor={`date-${counter.id}`}>Fecha y hora del evento (local)</label>
-        <input id={`date-${counter.id}`} name="date" type="datetime-local" required defaultValue={localDateValue} className={styles.input} />
-      </div>
 
       <input name="timezone" type="hidden" defaultValue={counter.timezone} />
 

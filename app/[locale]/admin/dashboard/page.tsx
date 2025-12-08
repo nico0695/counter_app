@@ -50,6 +50,12 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
                     timezone: c.timezone,
                     slug: c.slug,
                     counter: (c as any).counter ?? null,
+                    twitter: (c as any).twitter ?? null,
+                    instagram: (c as any).instagram ?? null,
+                    tiktok: (c as any).tiktok ?? null,
+                    facebook: (c as any).facebook ?? null,
+                    externalLink1: (c as any).externalLink1 ?? null,
+                    externalLink2: (c as any).externalLink2 ?? null,
                   }} />
                 </div>
                 {c.description ? (

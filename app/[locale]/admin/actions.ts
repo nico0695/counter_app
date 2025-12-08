@@ -30,6 +30,12 @@ export async function createCounter(formData: FormData) {
   const date = String(formData.get('date') || '').trim(); // local datetime from input
   const timezone = String(formData.get('timezone') || '').trim();
   const counterId = String(formData.get('counter') || '').trim();
+  const twitter = String(formData.get('twitter') || '').trim();
+  const instagram = String(formData.get('instagram') || '').trim();
+  const tiktok = String(formData.get('tiktok') || '').trim();
+  const facebook = String(formData.get('facebook') || '').trim();
+  const externalLink1 = String(formData.get('externalLink1') || '').trim();
+  const externalLink2 = String(formData.get('externalLink2') || '').trim();
 
   if (!title || !date || !timezone) {
     throw new Error('Datos inválidos');
@@ -59,6 +65,12 @@ export async function createCounter(formData: FormData) {
       targetDate: utcDate,
       timezone,
       userId,
+      twitter: twitter || null,
+      instagram: instagram || null,
+      tiktok: tiktok || null,
+      facebook: facebook || null,
+      externalLink1: externalLink1 || null,
+      externalLink2: externalLink2 || null,
     },
   });
 
@@ -92,6 +104,12 @@ export async function updateCounter(formData: FormData) {
   const date = String(formData.get('date') || '').trim();
   const timezone = String(formData.get('timezone') || '').trim();
   const counterId = String(formData.get('counter') || '').trim();
+  const twitter = String(formData.get('twitter') || '').trim();
+  const instagram = String(formData.get('instagram') || '').trim();
+  const tiktok = String(formData.get('tiktok') || '').trim();
+  const facebook = String(formData.get('facebook') || '').trim();
+  const externalLink1 = String(formData.get('externalLink1') || '').trim();
+  const externalLink2 = String(formData.get('externalLink2') || '').trim();
 
   if (!id || !title || !date || !timezone) throw new Error('Datos inválidos');
 
@@ -113,6 +131,12 @@ export async function updateCounter(formData: FormData) {
       mediaType: mediaType as any,
       targetDate: utcDate,
       timezone,
+      twitter: twitter || null,
+      instagram: instagram || null,
+      tiktok: tiktok || null,
+      facebook: facebook || null,
+      externalLink1: externalLink1 || null,
+      externalLink2: externalLink2 || null,
       ...(selectedCounter ? { counter: selectedCounter } : {}),
     },
   });
@@ -230,6 +254,12 @@ export async function adminCreateCounterForUser(formData: FormData) {
   const mediaType = String(formData.get('mediaType') || 'IMAGE').toUpperCase();
   const date = String(formData.get('date') || '').trim();
   const timezone = String(formData.get('timezone') || '').trim();
+  const twitter = String(formData.get('twitter') || '').trim();
+  const instagram = String(formData.get('instagram') || '').trim();
+  const tiktok = String(formData.get('tiktok') || '').trim();
+  const facebook = String(formData.get('facebook') || '').trim();
+  const externalLink1 = String(formData.get('externalLink1') || '').trim();
+  const externalLink2 = String(formData.get('externalLink2') || '').trim();
   if (!userId || !title || !date || !timezone) throw new Error('Invalid data');
 
   const baseSlug = slugify(title) || 'evento';
@@ -251,6 +281,12 @@ export async function adminCreateCounterForUser(formData: FormData) {
       targetDate: utcDate,
       timezone,
       userId,
+      twitter: twitter || null,
+      instagram: instagram || null,
+      tiktok: tiktok || null,
+      facebook: facebook || null,
+      externalLink1: externalLink1 || null,
+      externalLink2: externalLink2 || null,
     },
   });
   revalidatePath('/admin/links');
