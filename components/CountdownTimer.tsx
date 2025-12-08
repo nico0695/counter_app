@@ -1,22 +1,9 @@
 'use client';
 import styles from '@/components/CountdownTimer.module.scss';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { formatInTimeZone } from 'date-fns-tz';
 import { useTimezoneStore } from '@/store/timezone';
-
-function formatRemaining(ms: number) {
-  if (ms <= 0) return '00:00:00:00';
-  const totalSeconds = Math.floor(ms / 1000);
-  const days = Math.floor(totalSeconds / 86400);
-  const hours = Math.floor((totalSeconds % 86400) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  const dd = String(days).padStart(2, '0');
-  const hh = String(hours).padStart(2, '0');
-  const mm = String(minutes).padStart(2, '0');
-  const ss = String(seconds).padStart(2, '0');
-  return `${dd}:${hh}:${mm}:${ss}`;
-}
+import { counterVariants } from '@/components/counters';
 
 export default function CountdownTimer({
   title,
@@ -35,20 +22,10 @@ export default function CountdownTimer({
   targetDateISO: string; // stored in UTC
   eventTimezone: string; // original event timezone for display
 }) {
-  const [now, setNow] = useState<number>(Date.now());
   const tz = useTimezoneStore((s) => s.timezone);
   const setTimezone = useTimezoneStore((s) => s.setTimezone);
-  const target = useMemo(
-    () => new Date(targetDateISO).getTime(),
-    [targetDateISO]
-  );
-
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const remaining = Math.max(0, target - now);
+  const [selectedCounterIndex] = useState<number>(1); // 0: colon, 1: blocks
+  const ActiveCounter = counterVariants[selectedCounterIndex].Component;
   const formattedTarget = useMemo(() => {
     try {
       return formatInTimeZone(
@@ -96,7 +73,9 @@ export default function CountdownTimer({
           {description ? (
             <div className={styles.desc}>{description}</div>
           ) : null}
-          <div className={styles.timer}>{formatRemaining(remaining)}</div>
+          <div className={styles.timer}>
+            <ActiveCounter targetDateISO={targetDateISO} />
+          </div>
         </div>
       </div>
       <div className={styles.footer}>
