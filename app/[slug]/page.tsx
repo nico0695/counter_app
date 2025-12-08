@@ -5,7 +5,9 @@ import CountdownTimer from "@/components/CountdownTimer";
 interface Props { params: { slug: string } }
 
 export default async function CounterLanding({ params }: Props) {
-  const counter = await prisma.counter.findUnique({ where: { slug: params.slug } });
+  const counter = await prisma.counter.findFirst({
+    where: { slug: params.slug, enabled: true },
+  });
   if (!counter) return notFound();
   return (
     <CountdownTimer
@@ -17,4 +19,3 @@ export default async function CounterLanding({ params }: Props) {
     />
   );
 }
-

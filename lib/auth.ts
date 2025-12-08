@@ -26,26 +26,33 @@ export const authOptions: NextAuthOptions = {
 
         const existing = await prisma.user.findUnique({ where: { email } });
         if (existing) {
+          if (existing.blocked) return null;
           const ok = await compare(password, existing.password);
           if (!ok) return null;
-          return { id: existing.id, email: existing.email } as any;
+          return { id: existing.id, email: existing.email, role: existing.role } as any;
         }
 
         const hashed = await hash(password, 10);
         const created = await prisma.user.create({
           data: { email, password: hashed },
         });
-        return { id: created.id, email: created.email } as any;
+        return { id: created.id, email: created.email, role: created.role } as any;
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.id = (user as any).id;
+      if (user) {
+        token.id = (user as any).id;
+        (token as any).role = (user as any).role;
+      }
       return token;
     },
     async session({ session, token }) {
-      if (session.user && token) (session.user as any).id = (token as any).id;
+      if (session.user && token) {
+        (session.user as any).id = (token as any).id;
+        (session.user as any).role = (token as any).role;
+      }
       return session;
     },
   },

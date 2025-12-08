@@ -10,7 +10,7 @@ type Counter = {
   id: string;
   title: string;
   description: string | null;
-  bgUrl: string;
+  bgUrl: string | null;
   posterUrl?: string | null;
   mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
   targetDate: string; // ISO
@@ -79,7 +79,7 @@ export default function EditCounterForm({ counter, onSuccess }: { counter: Count
 
       <div className={styles.field}>
         <label htmlFor={`bg-${counter.id}`}>URL del fondo (opcional)</label>
-        <input id={`bg-${counter.id}`} name="bgUrl" type="url" defaultValue={counter.bgUrl} className={styles.input} />
+        <input id={`bg-${counter.id}`} name="bgUrl" type="url" defaultValue={counter.bgUrl ?? ''} className={styles.input} />
       </div>
 
       <div className={styles.field}>

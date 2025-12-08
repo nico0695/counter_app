@@ -1,0 +1,122 @@
+.container {
+  padding: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: color-mix(in oklab, #0b0b0c 94%, #fff 6%);
+  border: 1px solid #202225;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.table th {
+  background: #121316;
+  color: #e7e7ea;
+  font-weight: 600;
+}
+.table th,
+.table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #1e2024;
+  text-align: left;
+  font-size: 14px;
+}
+.table tr:hover td {
+  background: #131418;
+}
+
+.rowActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.formInline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input {
+  padding: 8px 10px;
+  border: 1px solid #2a2d33;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #0f1013;
+  color: #e7e7ea;
+}
+.input::placeholder {
+  color: #8b8f98;
+}
+
+.select {
+  padding: 8px 10px;
+  border: 1px solid #2a2d33;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #0f1013;
+  color: #e7e7ea;
+  appearance: none;
+}
+.select:focus {
+  outline: 2px solid #2f80ed44;
+}
+
+.button {
+  padding: 8px 12px;
+  border: 1px solid #2a2d33;
+  background: #111216;
+  color: #e7e7ea;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.button:hover {
+  background: #14161b;
+  border-color: #3a3f47;
+}
+.button:active {
+  background: #101217;
+}
+
+.buttonDanger {
+  border-color: #a62424;
+  color: #ff6b6b;
+  background: #151113;
+}
+.buttonDanger:hover {
+  background: #1a1416;
+  border-color: #c73232;
+}
+
+.buttonPrimary {
+  background: #2f80ed;
+  color: #ffffff;
+  border-color: #2f80ed;
+}
+.buttonPrimary:hover {
+  background: #2b73d6;
+  border-color: #2b73d6;
+}
+
+.createBox {
+  display: flex;
+  gap: 8px;
+}
+.muted {
+  color: #8b8f98;
+  font-size: 12px;
+}

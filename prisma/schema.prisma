@@ -11,6 +11,8 @@ model User {
   id       String    @id @default(cuid())
   email    String    @unique
   password String
+  role     String    @default("USER")
+  blocked  Boolean   @default(false)
   counters Counter[]
 }
 
@@ -19,12 +21,14 @@ model Counter {
   slug       String   @unique
   title      String
   description String?
-  bgUrl      String
+  bgUrl      String?
+  posterUrl  String?
+  mediaType  String   @default("IMAGE")
   targetDate DateTime
   timezone   String
   userId     String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  enabled    Boolean  @default(true)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
-

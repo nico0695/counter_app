@@ -11,7 +11,7 @@ type Counter = {
   id: string;
   title: string;
   description: string | null;
-  bgUrl: string;
+  bgUrl: string | null;
   posterUrl?: string | null;
   mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
   targetDate: string; // ISO
