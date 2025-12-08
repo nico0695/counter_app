@@ -4,7 +4,7 @@ services:
     build: .
     container_name: counter_app
     ports:
-      - "3005:3000"
+      - "3010:3000"
     volumes:
       - sqlite-data:/data
     environment:
@@ -12,8 +12,15 @@ services:
       - NODE_ENV=production
       - PORT=3000
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - NEXTAUTH_URL=http://localhost:3005
+      - NEXTAUTH_URL=http://localhost:3010
     restart: unless-stopped
+    networks:
+      default:
 
 volumes:
   sqlite-data:
+
+networks:
+  default:
+    external: true
+    name: public_networ

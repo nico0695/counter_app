@@ -9,6 +9,10 @@ WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
+# Ensure OpenSSL is installed so Prisma can detect version during generate
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends openssl \
+	&& rm -rf /var/lib/apt/lists/*
 RUN pnpm prisma generate
 RUN pnpm build
 
