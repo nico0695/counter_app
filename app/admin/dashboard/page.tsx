@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import CreateDialog from "@/components/admin/CreateDialog";
 import PathLink from "@/components/admin/PathLink";
+import CounterActions from "@/components/admin/CounterActions";
 import styles from "./dashboard.module.scss";
 
 export default async function DashboardPage() {
@@ -28,6 +29,15 @@ export default async function DashboardPage() {
               <li key={c.id} className={styles.card}>
                 <div className={styles.cardHead}>
                   <div className={styles.cardTitle}>{c.title}</div>
+                  <CounterActions counter={{
+                    id: c.id,
+                    title: c.title,
+                    description: c.description,
+                    bgUrl: c.bgUrl,
+                    targetDate: c.targetDate.toISOString(),
+                    timezone: c.timezone,
+                    slug: c.slug,
+                  }} />
                 </div>
                 {c.description ? (
                   <div className={styles.cardDesc}>{c.description}</div>

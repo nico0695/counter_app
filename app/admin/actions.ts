@@ -66,3 +66,66 @@ export async function createCounterAction(_prev: any, formData: FormData) {
     return { ok: false as const, error: e?.message ?? 'No se pudo crear el contador' };
   }
 }
+
+export async function updateCounter(formData: FormData) {
+  const session = await getSession();
+  if (!session?.user) throw new Error("Unauthorized");
+  const userId = (session.user as any).id as string;
+
+  const id = String(formData.get('id') || '').trim();
+  const title = String(formData.get('title') || '').trim();
+  const description = String(formData.get('description') || '').trim();
+  const bgUrl = String(formData.get('bgUrl') || '').trim();
+  const date = String(formData.get('date') || '').trim();
+  const timezone = String(formData.get('timezone') || '').trim();
+
+  if (!id || !title || !bgUrl || !date || !timezone) throw new Error('Datos inválidos');
+
+  const counter = await prisma.counter.findUnique({ where: { id } });
+  if (!counter || counter.userId !== userId) throw new Error('No autorizado');
+
+  const utcDate = fromZonedTime(date, timezone);
+
+  await prisma.counter.update({
+    where: { id },
+    data: {
+      title,
+      description: description || null,
+      bgUrl,
+      targetDate: utcDate,
+      timezone,
+    },
+  });
+}
+
+export async function updateCounterAction(_prev: any, formData: FormData) {
+  try {
+    await updateCounter(formData);
+    return { ok: true as const };
+  } catch (e: any) {
+    return { ok: false as const, error: e?.message ?? 'No se pudo actualizar el contador' };
+  }
+}
+
+export async function deleteCounter(formData: FormData) {
+  const session = await getSession();
+  if (!session?.user) throw new Error("Unauthorized");
+  const userId = (session.user as any).id as string;
+
+  const id = String(formData.get('id') || '').trim();
+  if (!id) throw new Error('Datos inválidos');
+
+  const counter = await prisma.counter.findUnique({ where: { id } });
+  if (!counter || counter.userId !== userId) throw new Error('No autorizado');
+
+  await prisma.counter.delete({ where: { id } });
+}
+
+export async function deleteCounterAction(_prev: any, formData: FormData) {
+  try {
+    await deleteCounter(formData);
+    return { ok: true as const };
+  } catch (e: any) {
+    return { ok: false as const, error: e?.message ?? 'No se pudo eliminar el contador' };
+  }
+}
