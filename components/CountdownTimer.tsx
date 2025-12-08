@@ -1,11 +1,11 @@
-"use client";
-import styles from "@/components/CountdownTimer.module.scss";
-import { useEffect, useMemo, useState } from "react";
-import { formatInTimeZone } from "date-fns-tz";
-import { useTimezoneStore } from "@/store/timezone";
+'use client';
+import styles from '@/components/CountdownTimer.module.scss';
+import { useEffect, useMemo, useState } from 'react';
+import { formatInTimeZone } from 'date-fns-tz';
+import { useTimezoneStore } from '@/store/timezone';
 
 function formatRemaining(ms: number) {
-  if (ms <= 0) return "00:00:00:00";
+  if (ms <= 0) return '00:00:00:00';
   const totalSeconds = Math.floor(ms / 1000);
   const days = Math.floor(totalSeconds / 86400);
   const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -30,7 +30,7 @@ export default function CountdownTimer({
   title: string;
   description?: string | null;
   bgUrl?: string | null;
-  mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
+  mediaType?: string;
   posterUrl?: string | null;
   targetDateISO: string; // stored in UTC
   eventTimezone: string; // original event timezone for display
@@ -38,7 +38,10 @@ export default function CountdownTimer({
   const [now, setNow] = useState<number>(Date.now());
   const tz = useTimezoneStore((s) => s.timezone);
   const setTimezone = useTimezoneStore((s) => s.setTimezone);
-  const target = useMemo(() => new Date(targetDateISO).getTime(), [targetDateISO]);
+  const target = useMemo(
+    () => new Date(targetDateISO).getTime(),
+    [targetDateISO]
+  );
 
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
@@ -48,19 +51,29 @@ export default function CountdownTimer({
   const remaining = Math.max(0, target - now);
   const formattedTarget = useMemo(() => {
     try {
-      return formatInTimeZone(new Date(targetDateISO), tz, "EEE d MMM yyyy HH:mm zzz");
+      return formatInTimeZone(
+        new Date(targetDateISO),
+        tz,
+        'EEE d MMM yyyy HH:mm zzz'
+      );
     } catch {
       return new Date(targetDateISO).toUTCString();
     }
   }, [targetDateISO, tz]);
 
-  const isVideo = (mediaType ?? 'IMAGE') === 'VIDEO' || (mediaType ?? 'image') === 'video';
-  const effectiveBg = bgUrl && bgUrl.length > 0 ? bgUrl : '/bg/default_bg.jpeg';
-  const effectivePoster = posterUrl && posterUrl.length > 0 ? posterUrl : '/bg/default_p.jpeg';
+  const isVideo =
+    (mediaType ?? 'IMAGE') === 'VIDEO' || (mediaType ?? 'image') === 'video';
+  const rawBg = (bgUrl ?? '').trim();
+  const effectiveBg = rawBg.length > 0 ? rawBg : '/bg/default_bg.jpeg';
+  const effectivePoster =
+    posterUrl && posterUrl.length > 0 ? posterUrl : '/bg/default_p.jpeg';
+  const [videoError, setVideoError] = useState(false);
+  const canUseVideo = isVideo && rawBg.length > 0 && !videoError;
 
+  console.log('canUseVideo= ', canUseVideo);
   return (
     <div className={styles.container}>
-      {isVideo && bgUrl ? (
+      {canUseVideo ? (
         <video
           className={styles.bgVideo}
           src={effectiveBg}
@@ -70,14 +83,20 @@ export default function CountdownTimer({
           loop
           playsInline
           preload="auto"
+          onError={() => setVideoError(true)}
         />
       ) : (
-        <div className={styles.bg} style={{ backgroundImage: `url(${effectiveBg})` }} />
+        <div
+          className={styles.bg}
+          style={{ backgroundImage: `url(${effectiveBg})` }}
+        />
       )}
       <div className={styles.content}>
         <div>
           <div className={styles.title}>{title}</div>
-          {description ? <div className={styles.desc}>{description}</div> : null}
+          {description ? (
+            <div className={styles.desc}>{description}</div>
+          ) : null}
           <div className={styles.timer}>{formatRemaining(remaining)}</div>
         </div>
       </div>
