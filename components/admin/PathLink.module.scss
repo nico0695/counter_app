@@ -1,0 +1,40 @@
+.pathLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: #e5e7eb;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.pathLink:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.16); }
+
+.urlText {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10px;
+  color: #93c5fd;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  position: relative;
+  padding: 4px;
+  border-radius: 8px;
+}
+.copyBtn:hover { color: #f3f4f6; }
+.copyBtn:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }

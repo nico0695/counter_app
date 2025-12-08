@@ -1,7 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
-import CreateCounterForm from "@/components/admin/CreateCounterForm";
-import Link from "next/link";
+import CreateDialog from "@/components/admin/CreateDialog";
+import PathLink from "@/components/admin/PathLink";
+import styles from "./dashboard.module.scss";
 
 export default async function DashboardPage() {
   const session = await getSession();
@@ -13,23 +14,25 @@ export default async function DashboardPage() {
   });
 
   return (
-    <main style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
-      <h1>Mis contadores</h1>
-      <section style={{ marginBlock: 24 }}>
-        <CreateCounterForm />
-      </section>
+    <main className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Mis contadores</h1>
+        <CreateDialog />
+      </header>
       <section>
         {counters.length === 0 ? (
-          <p>No hay contadores aún.</p>
+          <p className={styles.empty}>No hay contadores aún.</p>
         ) : (
-          <ul style={{ display: 'grid', gap: 12 }}>
+          <ul className={styles.list}>
             {counters.map((c) => (
-              <li key={c.id} style={{ border: '1px solid #ddd', padding: 12, borderRadius: 8 }}>
-                <strong>{c.title}</strong>
-                <div style={{ fontSize: 12, color: '#555' }}>{c.description}</div>
-                <div style={{ marginTop: 8 }}>
-                  <Link href={`/${c.slug}`}>Ver /{c.slug}</Link>
+              <li key={c.id} className={styles.card}>
+                <div className={styles.cardHead}>
+                  <div className={styles.cardTitle}>{c.title}</div>
                 </div>
+                {c.description ? (
+                  <div className={styles.cardDesc}>{c.description}</div>
+                ) : null}
+                <PathLink slug={c.slug} />
               </li>
             ))}
           </ul>

@@ -1,5 +1,6 @@
 import "@/styles/globals.scss";
 import { ReactNode } from "react";
+import { ToastProvider } from "@/components/ui/ToastProvider";
 
 export const metadata = {
   title: "Countdown Generator",
@@ -9,8 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        <ToastProvider>
+          {children}
+        </ToastProvider>
+      </body>
     </html>
   );
 }
-

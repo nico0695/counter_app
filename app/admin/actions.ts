@@ -57,3 +57,12 @@ export async function createCounter(formData: FormData) {
 export async function getCounter(slug: string) {
   return prisma.counter.findUnique({ where: { slug } });
 }
+
+export async function createCounterAction(_prev: any, formData: FormData) {
+  try {
+    await createCounter(formData);
+    return { ok: true as const };
+  } catch (e: any) {
+    return { ok: false as const, error: e?.message ?? 'No se pudo crear el contador' };
+  }
+}
