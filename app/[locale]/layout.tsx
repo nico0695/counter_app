@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
+import Script from 'next/script';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -45,6 +46,14 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <Script
+          defer
+          src="https://stats.asd0.site/script.js"
+          data-website-id="91d05970-5a57-4825-8bce-d009c9ed308e"
+          strategy="afterInteractive"
+        />
+      </head>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ToastProvider>
