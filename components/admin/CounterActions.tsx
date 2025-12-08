@@ -2,9 +2,9 @@
 import { useState } from "react";
 import styles from "./CounterActions.module.scss";
 import EditCounterForm from "@/components/admin/EditCounterForm";
-import { deleteCounterAction } from "@/app/admin/actions";
+import { deleteCounterAction } from "@/app/[locale]/admin/actions";
 import { useToast } from "@/components/ui/ToastProvider";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/lib/navigation";
 import Dialog from "@/components/ui/Dialog";
 
 type Counter = {

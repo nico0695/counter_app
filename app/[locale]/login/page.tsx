@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/lib/navigation";
+import { useTranslations } from "next-intl";
 import styles from "./login.module.scss";
 
 export default function LoginPage() {
@@ -9,6 +10,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const t = useTranslations("login");
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ export default function LoginPage() {
       password,
     });
     if (res?.error) {
-      setError("Credenciales inválidas");
+      setError(t("invalidCredentials"));
       return;
     }
     router.push("/admin/dashboard");
@@ -28,14 +30,14 @@ export default function LoginPage() {
   return (
     <main className={styles.wrapper}>
       <form className={styles.card} onSubmit={onSubmit}>
-        <h2 className={styles.title}>Ingresar / Registrarse</h2>
+        <h2 className={styles.title}>{t("title")}</h2>
 
         <label className={styles.field}>
-          <span>Email</span>
+          <span>{t("email")}</span>
           <input
             className={styles.input}
             type="email"
-            placeholder="tu@email.com"
+            placeholder={t("emailPlaceholder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -45,11 +47,11 @@ export default function LoginPage() {
         </label>
 
         <label className={styles.field}>
-          <span>Contraseña</span>
+          <span>{t("password")}</span>
           <input
             className={styles.input}
             type="password"
-            placeholder="Mínimo 6 caracteres"
+            placeholder={t("passwordPlaceholder")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -59,8 +61,8 @@ export default function LoginPage() {
 
         {error && <p className={styles.error}>{error}</p>}
 
-        <button className={styles.submit} type="submit">Continuar</button>
-        <p className={styles.hint}>Si el email no existe, se creará una cuenta automáticamente.</p>
+        <button className={styles.submit} type="submit">{t("submit")}</button>
+        <p className={styles.hint}>{t("hint")}</p>
       </form>
     </main>
   );

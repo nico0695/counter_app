@@ -1,0 +1,70 @@
+{
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "close": "Cerrar",
+    "saving": "Guardando…",
+    "creating": "Creando…",
+    "saved": "Guardado",
+    "deleted": "Eliminado"
+  },
+  "metadata": {
+    "title": "Generador de Cuentas Regresivas",
+    "description": "Crea y comparte cuentas regresivas"
+  },
+  "home": {
+    "title": "Generador de Cuentas Regresivas",
+    "subtitle": "Crea y comparte contadores de eventos.",
+    "loginButton": "Ingresar"
+  },
+  "login": {
+    "title": "Ingresar / Registrarse",
+    "email": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Mínimo 6 caracteres",
+    "submit": "Continuar",
+    "hint": "Si el email no existe, se creará una cuenta automáticamente.",
+    "invalidCredentials": "Credenciales inválidas"
+  },
+  "nav": {
+    "users": "Usuarios",
+    "links": "Enlaces"
+  },
+  "dashboard": {
+    "title": "Mis contadores",
+    "empty": "No hay contadores aún."
+  },
+  "counter": {
+    "createButton": "crear",
+    "createTitle": "Crear contador",
+    "editTitle": "Editar contador",
+    "deleteTitle": "Eliminar contador",
+    "deleteConfirm": "¿Seguro que deseas eliminar \"{title}\"?",
+    "deleteFailed": "No se pudo eliminar"
+  },
+  "form": {
+    "title": "Título",
+    "titlePlaceholder": "Ej: Lanzamiento",
+    "titleMinLength": "El título debe tener al menos 3 caracteres",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Breve descripción",
+    "background": "Fondo",
+    "backgroundImage": "Imagen",
+    "backgroundVideo": "Video",
+    "backgroundUrl": "URL del fondo (opcional)",
+    "backgroundUrlPlaceholder": "https://...",
+    "posterUrl": "URL poster (opcional)",
+    "posterUrlPlaceholder": "https://... (para video o fallback)",
+    "counterStyle": "Estilo de contador",
+    "dateLabel": "Fecha y hora del evento (local)",
+    "dateRequired": "La fecha es requerida"
+  },
+  "link": {
+    "copied": "Copiado al portapapeles",
+    "copy": "Copiar enlace"
+  }
+}

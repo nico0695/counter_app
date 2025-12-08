@@ -2,11 +2,13 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CountdownTimer from "@/components/CountdownTimer";
 
-interface Props { params: { slug: string } }
+interface Props { params: { locale: string; slug: string } }
 
 export default async function CounterLanding({ params }: Props) {
+  const { slug } = await Promise.resolve(params);
+
   const counter = await prisma.counter.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
     select: {
       id: true,
       slug: true,

@@ -3,11 +3,17 @@ import { getSession } from '@/lib/auth';
 import styles from './page.module.scss';
 import { adminDeleteCounter, adminToggleCounterEnabled } from '../actions';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
-export default async function AdminLinksPage() {
+
+export default async function AdminLinksPage({ params }: { params: { locale: string } }) {
   const session = await getSession();
   const role = (session?.user as any)?.role as string | undefined;
   if (role !== 'ADMIN') return null;
+
+  const t = await getTranslations({ locale: params.locale, namespace: 'links' });
+  const tCommon = await getTranslations({ locale: params.locale, namespace: 'common' });
+  const tNav = await getTranslations({ locale: params.locale, namespace: 'nav' });
 
   const counters = await prisma.counter.findMany({
     orderBy: { createdAt: 'desc' },
@@ -17,16 +23,16 @@ export default async function AdminLinksPage() {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Links</h1>
+        <h1 className={styles.title}>{tNav('links')}</h1>
       </header>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Título</th>
-            <th>Slug</th>
-            <th>Estado</th>
-            <th>Usuario</th>
-            <th>Acciones</th>
+            <th>{t('title')}</th>
+            <th>{t('slug')}</th>
+            <th>{t('status')}</th>
+            <th>{t('user')}</th>
+            <th>{t('actions')}</th>
           </tr>
         </thead>
         <tbody>
@@ -34,15 +40,15 @@ export default async function AdminLinksPage() {
             <tr key={c.id}>
               <td>{c.title}</td>
               <td className={styles.slug}>
-                <Link href={`/${c.slug}`}>/{c.slug}</Link>
+                <Link href={`/${params.locale}/${c.slug}`}>
+                  /{params.locale}/{c.slug}
+                </Link>
               </td>
               <td>
                 <span
-                  className={`${styles.badge} ${
-                    c.enabled ? styles.badgeOn : styles.badgeOff
-                  }`}
+                  className={`${styles.badge} ${c.enabled ? styles.badgeOn : styles.badgeOff}`}
                 >
-                  {c.enabled ? 'enabled' : 'disabled'}
+                  {c.enabled ? t('enabled') : t('disabled')}
                 </span>
               </td>
               <td>{c.user.email}</td>
@@ -56,15 +62,13 @@ export default async function AdminLinksPage() {
                       value={c.enabled ? 'false' : 'true'}
                     />
                     <button className={styles.button}>
-                      {c.enabled ? 'Disable' : 'Enable'}
+                      {c.enabled ? t('disable') : t('enable')}
                     </button>
                   </form>
                   <form action={adminDeleteCounter}>
                     <input type="hidden" name="id" value={c.id} />
-                    <button
-                      className={`${styles.button} ${styles.buttonDanger}`}
-                    >
-                      Delete
+                    <button className={`${styles.button} ${styles.buttonDanger}`}>
+                      {tCommon('delete')}
                     </button>
                   </form>
                 </div>

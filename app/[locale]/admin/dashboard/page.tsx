@@ -1,14 +1,24 @@
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
+import { getTranslations } from "next-intl/server";
 import CreateDialog from "@/components/admin/CreateDialog";
 import PathLink from "@/components/admin/PathLink";
 import CounterActions from "@/components/admin/CounterActions";
 import styles from "./dashboard.module.scss";
 
-export default async function DashboardPage() {
+interface DashboardPageProps {
+  params: { locale: string };
+}
+
+export default async function DashboardPage({ params }: DashboardPageProps) {
+  const { locale } = params;
+
   const session = await getSession();
   const userId = (session?.user as any)?.id as string | undefined;
   if (!userId) return null;
+
+  const t = await getTranslations({ locale, namespace: "dashboard" });
+
   const counters = await prisma.counter.findMany({
     where: { userId },
     orderBy: { createdAt: "desc" },
@@ -17,12 +27,12 @@ export default async function DashboardPage() {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Mis contadores</h1>
+        <h1 className={styles.title}>{t("title")}</h1>
         <CreateDialog />
       </header>
       <section>
         {counters.length === 0 ? (
-          <p className={styles.empty}>No hay contadores aún.</p>
+          <p className={styles.empty}>{t("empty")}</p>
         ) : (
           <ul className={styles.list}>
             {counters.map((c) => (

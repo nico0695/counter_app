@@ -1,0 +1,70 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "close": "Close",
+    "saving": "Saving…",
+    "creating": "Creating…",
+    "saved": "Saved",
+    "deleted": "Deleted"
+  },
+  "metadata": {
+    "title": "Countdown Generator",
+    "description": "Create and share countdowns"
+  },
+  "home": {
+    "title": "Countdown Generator",
+    "subtitle": "Create and share event countdowns.",
+    "loginButton": "Login"
+  },
+  "login": {
+    "title": "Login / Register",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Minimum 6 characters",
+    "submit": "Continue",
+    "hint": "If the email doesn't exist, an account will be created automatically.",
+    "invalidCredentials": "Invalid credentials"
+  },
+  "nav": {
+    "users": "Users",
+    "links": "Links"
+  },
+  "dashboard": {
+    "title": "My Counters",
+    "empty": "No counters yet."
+  },
+  "counter": {
+    "createButton": "create",
+    "createTitle": "Create Counter",
+    "editTitle": "Edit Counter",
+    "deleteTitle": "Delete Counter",
+    "deleteConfirm": "Are you sure you want to delete \"{title}\"?",
+    "deleteFailed": "Could not delete"
+  },
+  "form": {
+    "title": "Title",
+    "titlePlaceholder": "Ex: Product Launch",
+    "titleMinLength": "Title must be at least 3 characters",
+    "description": "Description",
+    "descriptionPlaceholder": "Brief description",
+    "background": "Background",
+    "backgroundImage": "Image",
+    "backgroundVideo": "Video",
+    "backgroundUrl": "Background URL (optional)",
+    "backgroundUrlPlaceholder": "https://...",
+    "posterUrl": "Poster URL (optional)",
+    "posterUrlPlaceholder": "https://... (for video or fallback)",
+    "counterStyle": "Counter Style",
+    "dateLabel": "Event Date & Time (local)",
+    "dateRequired": "Date is required"
+  },
+  "link": {
+    "copied": "Copied to clipboard",
+    "copy": "Copy link"
+  }
+}

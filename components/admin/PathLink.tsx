@@ -2,9 +2,11 @@
 import { useMemo } from "react";
 import styles from "./PathLink.module.scss";
 import { useToast } from "@/components/ui/ToastProvider";
+import { useLocale } from "next-intl";
 
 export default function PathLink({ slug }: { slug: string }) {
-  const href = useMemo(() => `/${slug}`, [slug]);
+  const locale = useLocale();
+  const href = useMemo(() => `/${locale}/${slug}`, [locale, slug]);
   const fullUrl = useMemo(() => {
     if (typeof window === "undefined") return href;
     return `${window.location.origin}${href}`;

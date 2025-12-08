@@ -5,7 +5,9 @@
   color: #e5e7eb;
 }
 @media (max-width: 380px) {
-  .container { padding: 16px; }
+  .container {
+    padding: 16px;
+  }
 }
 
 .header {
@@ -21,7 +23,9 @@
   letter-spacing: -0.02em;
 }
 
-.empty { color: #9ca3af; }
+.empty {
+  color: #9ca3af;
+}
 
 .list {
   list-style: none;
@@ -32,11 +36,13 @@
   gap: 14px;
 }
 @media (max-width: 380px) {
-  .list { grid-template-columns: 1fr; }
+  .list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(17, 24, 39, 0.6);
   border-radius: 12px;
   padding: 16px;
@@ -44,13 +50,24 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+  transition: transform 120ms ease, border-color 120ms ease,
+    background 120ms ease;
 }
 
-.card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.18);
+}
 
-.cardHead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.cardTitle { font-weight: 600; }
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.cardTitle {
+  font-weight: 600;
+}
 .cardDesc {
   margin-top: 6px;
   font-size: 13px;

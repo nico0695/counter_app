@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef } from "react";
-import { updateCounterAction } from "@/app/admin/actions";
+import { updateCounterAction } from "@/app/[locale]/admin/actions";
 import styles from "./CreateCounterForm.module.scss";
 import { useFormState, useFormStatus } from "react-dom";
 import { formatInTimeZone } from "date-fns-tz";
