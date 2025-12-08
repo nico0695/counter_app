@@ -1,5 +1,8 @@
 .env
 node_modules/
+.next/
+.vscode/
+
 prisma/dev.db
 dist/
 .vscode/
