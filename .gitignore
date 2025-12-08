@@ -1,0 +1,9 @@
+.env
+node_modules/
+prisma/dev.db
+dist/
+.vscode/
+.DS_Store
+
+
+AGENTS.md

@@ -1,0 +1,62 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/next@14.2.33_react-dom@18.3.1_react@18.3.1__react@18.3.1_sass@1.94.2/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[2]!./node_modules/.pnpm/next@14.2.33_react-dom@18.3.1_react@18.3.1__react@18.3.1_sass@1.94.2/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[9].use[3]!./node_modules/.pnpm/next@14.2.33_react-dom@18.3.1_react@18.3.1__react@18.3.1_sass@1.94.2/node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[9].use[4]!./node_modules/.pnpm/next@14.2.33_react-dom@18.3.1_react@18.3.1__react@18.3.1_sass@1.94.2/node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[9].use[5]!./components/CountdownTimer.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.CountdownTimer_container__iUNGh {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  color: white;
+}
+
+.CountdownTimer_bg__OmWE2 {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5);
+}
+
+.CountdownTimer_content__pQiRw {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  text-align: center;
+  padding: 24px;
+}
+
+.CountdownTimer_title__AXT__ {
+  font-size: clamp(28px, 5vw, 64px);
+  font-weight: 700;
+}
+
+.CountdownTimer_desc__02_vF {
+  margin-top: 8px;
+  font-size: clamp(14px, 2vw, 20px);
+  opacity: 0.9;
+}
+
+.CountdownTimer_timer__8hi4a {
+  margin-top: 24px;
+  font-size: clamp(32px, 8vw, 88px);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.CountdownTimer_footer__hUEL8 {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.CountdownTimer_footer__hUEL8 input {
+  padding: 6px 10px;
+}

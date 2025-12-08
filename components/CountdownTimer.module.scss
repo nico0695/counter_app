@@ -1,0 +1,59 @@
+.container {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  color: white;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5);
+}
+
+.content {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  text-align: center;
+  padding: 24px;
+}
+
+.title {
+  font-size: clamp(28px, 5vw, 64px);
+  font-weight: 700;
+}
+
+.desc {
+  margin-top: 8px;
+  font-size: clamp(14px, 2vw, 20px);
+  opacity: 0.9;
+}
+
+.timer {
+  margin-top: 24px;
+  font-size: clamp(32px, 8vw, 88px);
+  font-variant-numeric: tabular-nums;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer input {
+  padding: 6px 10px;
+}
+
