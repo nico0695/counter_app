@@ -36,16 +36,10 @@ export default function CreateCounterForm({ onSuccess }: Props) {
         setClientError(null);
         const form = e.currentTarget as HTMLFormElement;
         const title = (form.elements.namedItem('title') as HTMLInputElement)?.value?.trim();
-        const bgUrl = (form.elements.namedItem('bgUrl') as HTMLInputElement)?.value?.trim();
         const date = (form.elements.namedItem('date') as HTMLInputElement)?.value?.trim();
         if (!title || title.length < 3) {
           e.preventDefault();
           setClientError('El título debe tener al menos 3 caracteres');
-          return;
-        }
-        if (!bgUrl) {
-          e.preventDefault();
-          setClientError('La imagen de fondo es requerida');
           return;
         }
         if (!date) {
@@ -65,9 +59,26 @@ export default function CreateCounterForm({ onSuccess }: Props) {
         <input id="description" name="description" placeholder="Breve descripción" className={styles.input} />
       </div>
 
+      <fieldset className={styles.field}>
+        <legend>Fondo</legend>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <input type="radio" name="mediaType" value="image" defaultChecked /> Imagen
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <input type="radio" name="mediaType" value="video" /> Video
+          </label>
+        </div>
+      </fieldset>
+
       <div className={styles.field}>
-        <label htmlFor="bgUrl">Imagen de fondo (URL)</label>
-        <input id="bgUrl" name="bgUrl" type="url" required placeholder="https://..." className={styles.input} />
+        <label htmlFor="bgUrl">URL del fondo (opcional)</label>
+        <input id="bgUrl" name="bgUrl" type="url" placeholder="https://..." className={styles.input} />
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="posterUrl">URL poster (opcional)</label>
+        <input id="posterUrl" name="posterUrl" type="url" placeholder="https://... (para video o fallback)" className={styles.input} />
       </div>
 
       <div className={styles.field}>

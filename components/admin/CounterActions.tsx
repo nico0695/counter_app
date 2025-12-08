@@ -12,6 +12,8 @@ type Counter = {
   title: string;
   description: string | null;
   bgUrl: string;
+  posterUrl?: string | null;
+  mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
   targetDate: string; // ISO
   timezone: string;
   slug: string;

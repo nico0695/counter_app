@@ -34,6 +34,8 @@ export default async function DashboardPage() {
                     title: c.title,
                     description: c.description,
                     bgUrl: c.bgUrl,
+                    posterUrl: (c as any).posterUrl ?? null,
+                    mediaType: (c as any).mediaType ?? 'IMAGE',
                     targetDate: c.targetDate.toISOString(),
                     timezone: c.timezone,
                     slug: c.slug,

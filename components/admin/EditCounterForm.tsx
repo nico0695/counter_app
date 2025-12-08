@@ -11,6 +11,8 @@ type Counter = {
   title: string;
   description: string | null;
   bgUrl: string;
+  posterUrl?: string | null;
+  mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
   targetDate: string; // ISO
   timezone: string;
 };
@@ -45,9 +47,8 @@ export default function EditCounterForm({ counter, onSuccess }: { counter: Count
       onSubmitCapture={(e) => {
         const form = e.currentTarget as HTMLFormElement;
         const title = (form.elements.namedItem('title') as HTMLInputElement)?.value?.trim();
-        const bgUrl = (form.elements.namedItem('bgUrl') as HTMLInputElement)?.value?.trim();
         const date = (form.elements.namedItem('date') as HTMLInputElement)?.value?.trim();
-        if (!title || title.length < 3 || !bgUrl || !date) {
+        if (!title || title.length < 3 || !date) {
           e.preventDefault();
         }
       }}
@@ -64,9 +65,26 @@ export default function EditCounterForm({ counter, onSuccess }: { counter: Count
         <input id={`desc-${counter.id}`} name="description" maxLength={160} defaultValue={counter.description ?? ''} className={styles.input} />
       </div>
 
+      <fieldset className={styles.field}>
+        <legend>Fondo</legend>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <input type="radio" name="mediaType" value="image" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'IMAGE' || (counter.mediaType ?? 'image') === 'image'} /> Imagen
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <input type="radio" name="mediaType" value="video" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video'} /> Video
+          </label>
+        </div>
+      </fieldset>
+
       <div className={styles.field}>
-        <label htmlFor={`bg-${counter.id}`}>Imagen de fondo (URL)</label>
-        <input id={`bg-${counter.id}`} name="bgUrl" type="url" required defaultValue={counter.bgUrl} className={styles.input} />
+        <label htmlFor={`bg-${counter.id}`}>URL del fondo (opcional)</label>
+        <input id={`bg-${counter.id}`} name="bgUrl" type="url" defaultValue={counter.bgUrl} className={styles.input} />
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor={`poster-${counter.id}`}>URL poster (opcional)</label>
+        <input id={`poster-${counter.id}`} name="posterUrl" type="url" defaultValue={counter.posterUrl ?? ''} className={styles.input} />
       </div>
 
       <div className={styles.field}>

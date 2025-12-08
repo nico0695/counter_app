@@ -22,12 +22,16 @@ export default function CountdownTimer({
   title,
   description,
   bgUrl,
+  mediaType,
+  posterUrl,
   targetDateISO,
   eventTimezone,
 }: {
   title: string;
   description?: string | null;
-  bgUrl: string;
+  bgUrl?: string | null;
+  mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
+  posterUrl?: string | null;
   targetDateISO: string; // stored in UTC
   eventTimezone: string; // original event timezone for display
 }) {
@@ -50,9 +54,26 @@ export default function CountdownTimer({
     }
   }, [targetDateISO, tz]);
 
+  const isVideo = (mediaType ?? 'IMAGE') === 'VIDEO' || (mediaType ?? 'image') === 'video';
+  const effectiveBg = bgUrl && bgUrl.length > 0 ? bgUrl : '/bg/default_bg.jpeg';
+  const effectivePoster = posterUrl && posterUrl.length > 0 ? posterUrl : '/bg/default_p.jpeg';
+
   return (
     <div className={styles.container}>
-      <div className={styles.bg} style={{ backgroundImage: `url(${bgUrl})` }} />
+      {isVideo && bgUrl ? (
+        <video
+          className={styles.bgVideo}
+          src={effectiveBg}
+          poster={effectivePoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+      ) : (
+        <div className={styles.bg} style={{ backgroundImage: `url(${effectiveBg})` }} />
+      )}
       <div className={styles.content}>
         <div>
           <div className={styles.title}>{title}</div>
