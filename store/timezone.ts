@@ -1,5 +1,6 @@
 "use client";
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 export interface ITimezoneState {
   timezone: string;
@@ -14,8 +15,16 @@ function getDefaultTz(): string {
   }
 }
 
-export const useTimezoneStore = create<ITimezoneState>((set) => ({
-  timezone: getDefaultTz(),
-  setTimezone: (tz) => set({ timezone: tz || "UTC" }),
-}));
+export const useTimezoneStore = create<ITimezoneState>()(
+  persist(
+    (set) => ({
+      timezone: getDefaultTz(),
+      setTimezone: (tz) => set({ timezone: tz || "UTC" }),
+    }),
+    {
+      name: "countdown-timezone-storage",
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
 
