@@ -18,7 +18,7 @@
   "home": {
     "title": "Countdown Generator",
     "subtitle": "Create and share event countdowns.",
-    "loginButton": "Login"
+    "loginButton": "Login / Register"
   },
   "login": {
     "title": "Login / Register",
