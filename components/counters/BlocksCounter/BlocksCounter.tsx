@@ -30,4 +30,3 @@ export default function BlocksCounter({ targetDateISO }: { targetDateISO: string
     </div>
   );
 }
-

@@ -16,4 +16,3 @@ export default function ColonCounter({ targetDateISO }: { targetDateISO: string 
     </div>
   );
 }
-

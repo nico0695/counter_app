@@ -4,8 +4,8 @@ import { counterOptions } from '@/lib/counterOptions';
 
 export type CounterComponent = ComponentType<{ targetDateISO: string }>;
 
-export const ColonCounter: CounterComponent = dynamic(() => import('./ColonCounter'), { ssr: false });
-export const BlocksCounter: CounterComponent = dynamic(() => import('./BlocksCounter'), { ssr: false });
+export const ColonCounter: CounterComponent = dynamic(() => import('./ColonCounter/ColonCounter'), { ssr: false });
+export const BlocksCounter: CounterComponent = dynamic(() => import('./BlocksCounter/BlocksCounter'), { ssr: false });
 
 export const counterVariants: { id: string; name: string; Component: CounterComponent }[] = counterOptions.map((opt) => ({
   ...opt,
