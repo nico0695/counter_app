@@ -22,6 +22,19 @@ export async function createCounter(formData: FormData) {
   const session = await getSession();
   if (!session?.user) throw new Error("Unauthorized");
   const userId = (session.user as any).id as string;
+  const role = (session.user as any).role as string;
+
+  // Validar límite de counters para usuarios USER (ADMIN sin límite)
+  if (role === 'USER') {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { maxCounters: true, _count: { select: { counters: true } } },
+    });
+
+    if (user && user._count.counters >= user.maxCounters) {
+      throw new Error('Has alcanzado el límite de links permitidos');
+    }
+  }
 
   const title = String(formData.get('title') || '').trim();
   const description = String(formData.get('description') || '').trim();
@@ -222,6 +235,16 @@ export async function adminUpdateUserRole(formData: FormData) {
   const role = String(formData.get('role') || '').toUpperCase();
   if (!userId || (role !== 'ADMIN' && role !== 'USER')) throw new Error('Invalid data');
   await prisma.user.update({ where: { id: userId }, data: { role: role as any } });
+  revalidatePath('/admin/users');
+}
+
+export async function adminUpdateUserMaxCounters(formData: FormData) {
+  await requireAdmin();
+  const userId = String(formData.get('userId') || '').trim();
+  const maxCountersStr = String(formData.get('maxCounters') || '').trim();
+  const maxCounters = parseInt(maxCountersStr, 10);
+  if (!userId || isNaN(maxCounters) || maxCounters < 1) throw new Error('Invalid data');
+  await prisma.user.update({ where: { id: userId }, data: { maxCounters } });
   revalidatePath('/admin/users');
 }
 

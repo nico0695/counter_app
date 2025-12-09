@@ -7,6 +7,7 @@ import {
   adminDisableUserCounters,
   adminToggleUserBlocked,
   adminUpdateUserRole,
+  adminUpdateUserMaxCounters,
 } from '../actions';
 
 export default async function AdminUsersPage() {
@@ -33,6 +34,7 @@ export default async function AdminUsersPage() {
             <th>Role</th>
             <th>Blocked</th>
             <th>Counters</th>
+            <th>Max Links</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -74,6 +76,27 @@ export default async function AdminUsersPage() {
                 </form>
               </td>
               <td>{(u as any)._count.counters}</td>
+              <td>
+                {u.role === 'USER' ? (
+                  <form
+                    className={styles.formInline}
+                    action={adminUpdateUserMaxCounters}
+                  >
+                    <input type="hidden" name="userId" value={u.id} />
+                    <input
+                      type="number"
+                      name="maxCounters"
+                      defaultValue={u.maxCounters}
+                      min="1"
+                      className={styles.input}
+                      style={{ width: '60px' }}
+                    />
+                    <button className={styles.button}>Save</button>
+                  </form>
+                ) : (
+                  <span>∞</span>
+                )}
+              </td>
               <td>
                 <div className={styles.rowActions}>
                   <form action={adminDisableUserCounters}>

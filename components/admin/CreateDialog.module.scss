@@ -2,6 +2,22 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 12px;
+}
+
+.limitInfo {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.limitAlert {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 14px;
 }
 
 .trigger {
@@ -16,6 +32,11 @@
 
 .trigger:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.2); }
 .trigger:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
 
 .overlay {
   position: fixed;

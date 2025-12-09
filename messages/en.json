@@ -36,7 +36,9 @@
   },
   "dashboard": {
     "title": "My Counters",
-    "empty": "No counters yet."
+    "empty": "No counters yet.",
+    "countersUsed": "{current} of {max} links created",
+    "limitReached": "You have reached the maximum number of links allowed"
   },
   "counter": {
     "createButton": "create",

@@ -15,20 +15,35 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
 
   const session = await getSession();
   const userId = (session?.user as any)?.id as string | undefined;
+  const role = (session?.user as any)?.role as string | undefined;
   if (!userId) return null;
 
   const t = await getTranslations({ locale, namespace: "dashboard" });
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { maxCounters: true, _count: { select: { counters: true } } },
+  });
 
   const counters = await prisma.counter.findMany({
     where: { userId },
     orderBy: { createdAt: "desc" },
   });
 
+  const currentCount = user?._count.counters ?? 0;
+  const maxCounters = user?.maxCounters ?? 10;
+  const isLimitReached = role === 'USER' && currentCount >= maxCounters;
+
   return (
     <main className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>{t("title")}</h1>
-        <CreateDialog />
+        <CreateDialog
+          isLimitReached={isLimitReached}
+          currentCount={currentCount}
+          maxCounters={maxCounters}
+          isAdmin={role === 'ADMIN'}
+        />
       </header>
       <section>
         {counters.length === 0 ? (

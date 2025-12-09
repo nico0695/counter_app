@@ -36,7 +36,9 @@
   },
   "dashboard": {
     "title": "Mis contadores",
-    "empty": "No hay contadores aún."
+    "empty": "No hay contadores aún.",
+    "countersUsed": "{current} de {max} links creados",
+    "limitReached": "Has alcanzado el límite de links permitidos"
   },
   "counter": {
     "createButton": "crear",
