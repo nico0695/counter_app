@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CountdownTimer from "@/components/CountdownTimer";
+import type { ICounter } from "@/interfaces/counter.interfaces";
 
 interface Props { params: { locale: string; slug: string } }
 
@@ -40,27 +41,6 @@ export default async function CounterLanding({ params }: Props) {
   });
   if (!counter || !counter.enabled) return notFound();
   return (
-    <CountdownTimer
-      title={counter.title}
-      description={counter.description}
-      bgUrl={counter.bgUrl}
-      mediaType={counter.mediaType ?? 'IMAGE'}
-      posterUrl={counter.posterUrl ?? null}
-      targetDateISO={counter.targetDate.toISOString()}
-      eventTimezone={counter.timezone}
-      counterId={(counter as any).counter ?? undefined}
-      twitter={counter.twitter}
-      instagram={counter.instagram}
-      tiktok={counter.tiktok}
-      facebook={counter.facebook}
-      externalLink1={counter.externalLink1}
-      externalLink2={counter.externalLink2}
-      titleFont={counter.titleFont}
-      titleColor={counter.titleColor}
-      titleSize={counter.titleSize}
-      descriptionFont={counter.descriptionFont}
-      descriptionColor={counter.descriptionColor}
-      descriptionSize={counter.descriptionSize}
-    />
+    <CountdownTimer counter={counter as ICounter} />
   );
 }

@@ -1,91 +1,51 @@
-'use client';
-import styles from '@/components/CountdownTimer.module.scss';
-import { useEffect, useMemo, useState } from 'react';
-import { formatInTimeZone } from 'date-fns-tz';
-import { useTimezoneStore } from '@/store/timezone';
-import { counterMap } from '@/components/counters';
-import { defaultCounterId } from '@/lib/counterOptions';
-import StyledText from '@/components/StyledText';
-import { fontOptions } from '@/lib/textStyles';
+"use client";
+import styles from "@/components/CountdownTimer.module.scss";
+import { useEffect, useMemo, useState } from "react";
+import { formatInTimeZone } from "date-fns-tz";
+import { useTimezoneStore } from "@/store/timezone";
+import { counterMap } from "@/components/counters";
+import { defaultCounterId } from "@/lib/counterOptions";
+import StyledText from "@/components/StyledText";
+import { fontOptions } from "@/lib/textStyles";
+import type { ICounter } from "@/interfaces/counter.interfaces";
 
-export default function CountdownTimer({
-  title,
-  description,
-  bgUrl,
-  mediaType,
-  posterUrl,
-  targetDateISO,
-  eventTimezone,
-  counterId,
-  twitter,
-  instagram,
-  tiktok,
-  facebook,
-  externalLink1,
-  externalLink2,
-  titleFont,
-  titleColor,
-  titleSize,
-  descriptionFont,
-  descriptionColor,
-  descriptionSize,
-}: {
-  title: string;
-  description?: string | null;
-  bgUrl?: string | null;
-  mediaType?: string;
-  posterUrl?: string | null;
-  targetDateISO: string; // stored in UTC
-  eventTimezone: string; // original event timezone for display
-  counterId?: string;
-  twitter?: string | null;
-  instagram?: string | null;
-  tiktok?: string | null;
-  facebook?: string | null;
-  externalLink1?: string | null;
-  externalLink2?: string | null;
-  titleFont?: string | null;
-  titleColor?: string | null;
-  titleSize?: string | null;
-  descriptionFont?: string | null;
-  descriptionColor?: string | null;
-  descriptionSize?: string | null;
-}) {
+export default function CountdownTimer({ counter }: { counter: ICounter }) {
   const tz = useTimezoneStore((s) => s.timezone);
   const setTimezone = useTimezoneStore((s) => s.setTimezone);
-  const effectiveId = (counterId && counterMap[counterId]) ? counterId : defaultCounterId;
+  const counterId = counter.counter ?? undefined;
+  const effectiveId = counterId && counterMap[counterId] ? counterId : defaultCounterId;
   const ActiveCounter = counterMap[effectiveId];
   const formattedTarget = useMemo(() => {
     try {
       return formatInTimeZone(
-        new Date(targetDateISO),
+        new Date(counter.targetDate.toISOString()),
         tz,
         'EEE d MMM yyyy HH:mm zzz'
       );
     } catch {
-      return new Date(targetDateISO).toUTCString();
+      return new Date(counter.targetDate.toISOString()).toUTCString();
     }
-  }, [targetDateISO, tz]);
+  }, [counter.targetDate, tz]);
 
   const isVideo =
-    (mediaType ?? 'IMAGE') === 'VIDEO' || (mediaType ?? 'image') === 'video';
-  const rawBg = (bgUrl ?? '').trim();
+    (counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video';
+  const rawBg = (counter.bgUrl ?? '').trim();
   const effectiveBg = rawBg.length > 0 ? rawBg : '/bg/default_bg.jpeg';
   const effectivePoster =
-    posterUrl && posterUrl.length > 0 ? posterUrl : '/bg/default_p.jpeg';
+    counter.posterUrl && counter.posterUrl.length > 0 ? counter.posterUrl : '/bg/default_p.jpeg';
   const [videoError, setVideoError] = useState(false);
   const canUseVideo = isVideo && rawBg.length > 0 && !videoError;
 
   useEffect(() => {
     const fontsToLoad: string[] = [];
 
-    if (titleFont) {
-      const font = fontOptions.find(f => f.id === titleFont);
+    if (counter.titleFont) {
+      const font = fontOptions.find(f => f.id === counter.titleFont);
       if (font) fontsToLoad.push(font.family);
     }
 
-    if (descriptionFont && descriptionFont !== titleFont) {
-      const font = fontOptions.find(f => f.id === descriptionFont);
+    if (counter.descriptionFont && counter.descriptionFont !== counter.titleFont) {
+      const font = fontOptions.find(f => f.id === counter.descriptionFont);
       if (font) fontsToLoad.push(font.family);
     }
 
@@ -109,7 +69,7 @@ export default function CountdownTimer({
       const link = document.getElementById(linkId);
       if (link) link.remove();
     };
-  }, [titleFont, descriptionFont]);
+  }, [counter.titleFont, counter.descriptionFont]);
 
   return (
     <div className={styles.container}>
@@ -134,29 +94,29 @@ export default function CountdownTimer({
       <div className={styles.content}>
         <div>
           <StyledText
-            text={title}
-            fontId={titleFont}
-            color={titleColor}
-            sizeId={titleSize}
+            text={counter.title}
+            fontId={counter.titleFont ?? undefined}
+            color={counter.titleColor ?? undefined}
+            sizeId={counter.titleSize ?? undefined}
             className={styles.title}
           />
-          {description ? (
+          {counter.description ? (
             <StyledText
-              text={description}
-              fontId={descriptionFont}
-              color={descriptionColor}
-              sizeId={descriptionSize}
+              text={counter.description}
+              fontId={counter.descriptionFont ?? undefined}
+              color={counter.descriptionColor ?? undefined}
+              sizeId={counter.descriptionSize ?? undefined}
               className={styles.desc}
             />
           ) : null}
           <div className={styles.timer}>
-            <ActiveCounter targetDateISO={targetDateISO} />
+            <ActiveCounter targetDateISO={counter.targetDate.toISOString()} />
           </div>
-          {(twitter || instagram || tiktok || facebook || externalLink1 || externalLink2) && (
+          {(counter.twitter || counter.instagram || counter.tiktok || counter.facebook || counter.externalLink1 || counter.externalLink2) && (
             <div className={styles.socialLinks}>
-              {twitter && (
+              {counter.twitter && (
                 <a
-                  href={twitter}
+                  href={counter.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIcon}
@@ -167,9 +127,9 @@ export default function CountdownTimer({
                   </svg>
                 </a>
               )}
-              {instagram && (
+              {counter.instagram && (
                 <a
-                  href={instagram}
+                  href={counter.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIcon}
@@ -180,9 +140,9 @@ export default function CountdownTimer({
                   </svg>
                 </a>
               )}
-              {tiktok && (
+              {counter.tiktok && (
                 <a
-                  href={tiktok}
+                  href={counter.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIcon}
@@ -193,9 +153,9 @@ export default function CountdownTimer({
                   </svg>
                 </a>
               )}
-              {facebook && (
+              {counter.facebook && (
                 <a
-                  href={facebook}
+                  href={counter.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIcon}
@@ -206,9 +166,9 @@ export default function CountdownTimer({
                   </svg>
                 </a>
               )}
-              {externalLink1 && (
+              {counter.externalLink1 && (
                 <a
-                  href={externalLink1}
+                  href={counter.externalLink1}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIcon}
@@ -219,9 +179,9 @@ export default function CountdownTimer({
                   </svg>
                 </a>
               )}
-              {externalLink2 && (
+              {counter.externalLink2 && (
                 <a
-                  href={externalLink2}
+                  href={counter.externalLink2}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIcon}
@@ -248,7 +208,7 @@ export default function CountdownTimer({
           aria-label="Cambiar zona horaria"
         />
         <span>Evento: {formattedTarget}</span>
-        <span style={{ opacity: 0.7 }}>(Original: {eventTimezone})</span>
+        <span style={{ opacity: 0.7 }}>(Original: {counter.timezone})</span>
       </div>
     </div>
   );
