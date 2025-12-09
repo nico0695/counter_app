@@ -6,6 +6,8 @@ import { useFormState, useFormStatus } from "react-dom";
 import { formatInTimeZone } from "date-fns-tz";
 import React from "react";
 import { counterOptions, defaultCounterId } from "@/lib/counterOptions";
+import { fontOptions, sizeOptions, defaultFontId, defaultSizeId, defaultColor } from "@/lib/textStyles";
+import { useTranslations } from "next-intl";
 
 type Counter = {
   id: string;
@@ -23,12 +25,19 @@ type Counter = {
   facebook?: string | null;
   externalLink1?: string | null;
   externalLink2?: string | null;
+  titleFont?: string | null;
+  titleColor?: string | null;
+  titleSize?: string | null;
+  descriptionFont?: string | null;
+  descriptionColor?: string | null;
+  descriptionSize?: string | null;
 };
 
 export default function EditCounterForm({ counter, onSuccess }: { counter: Counter; onSuccess?: () => void }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction] = useFormState(updateCounterAction as any, { ok: false, error: null } as any);
   const handledRef = useRef(false);
+  const t = useTranslations("form");
 
   const localDateValue = useMemo(() => {
     try {
@@ -64,23 +73,75 @@ export default function EditCounterForm({ counter, onSuccess }: { counter: Count
       <input type="hidden" name="id" defaultValue={counter.id} />
 
       <div className={styles.fieldFullWidth}>
-        <label htmlFor={`title-${counter.id}`}>Título</label>
+        <label htmlFor={`title-${counter.id}`}>{t('title')}</label>
         <input id={`title-${counter.id}`} name="title" required minLength={3} maxLength={80} defaultValue={counter.title} className={styles.input} />
       </div>
 
       <div className={styles.fieldFullWidth}>
-        <label htmlFor={`desc-${counter.id}`}>Descripción</label>
+        <label htmlFor={`desc-${counter.id}`}>{t('description')}</label>
         <input id={`desc-${counter.id}`} name="description" maxLength={160} defaultValue={counter.description ?? ''} className={styles.input} />
       </div>
 
+      <fieldset className={styles.fieldFullWidth}>
+        <legend>{t('titleStyles')}</legend>
+        <div className={styles.formGrid}>
+          <div className={styles.field}>
+            <label htmlFor={`titleFont-${counter.id}`}>{t('font')}</label>
+            <select id={`titleFont-${counter.id}`} name="titleFont" defaultValue={counter.titleFont ?? defaultFontId} className={styles.input}>
+              {fontOptions.map((font) => (
+                <option key={font.id} value={font.id}>{font.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`titleColor-${counter.id}`}>{t('color')}</label>
+            <input id={`titleColor-${counter.id}`} name="titleColor" type="color" defaultValue={counter.titleColor ?? defaultColor} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`titleSize-${counter.id}`}>{t('size')}</label>
+            <select id={`titleSize-${counter.id}`} name="titleSize" defaultValue={counter.titleSize ?? defaultSizeId} className={styles.input}>
+              {sizeOptions.map((size) => (
+                <option key={size.id} value={size.id}>{size.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className={styles.fieldFullWidth}>
+        <legend>{t('descriptionStyles')}</legend>
+        <div className={styles.formGrid}>
+          <div className={styles.field}>
+            <label htmlFor={`descriptionFont-${counter.id}`}>{t('font')}</label>
+            <select id={`descriptionFont-${counter.id}`} name="descriptionFont" defaultValue={counter.descriptionFont ?? defaultFontId} className={styles.input}>
+              {fontOptions.map((font) => (
+                <option key={font.id} value={font.id}>{font.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`descriptionColor-${counter.id}`}>{t('color')}</label>
+            <input id={`descriptionColor-${counter.id}`} name="descriptionColor" type="color" defaultValue={counter.descriptionColor ?? defaultColor} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor={`descriptionSize-${counter.id}`}>{t('size')}</label>
+            <select id={`descriptionSize-${counter.id}`} name="descriptionSize" defaultValue={counter.descriptionSize ?? 'sm'} className={styles.input}>
+              {sizeOptions.map((size) => (
+                <option key={size.id} value={size.id}>{size.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
       <div className={styles.formGrid}>
         <div className={styles.field}>
-          <label htmlFor={`date-${counter.id}`}>Fecha y hora del evento (local)</label>
+          <label htmlFor={`date-${counter.id}`}>{t('dateLabel')}</label>
           <input id={`date-${counter.id}`} name="date" type="datetime-local" required defaultValue={localDateValue} className={styles.input} />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor={`counter-${counter.id}`}>Estilo de contador</label>
+          <label htmlFor={`counter-${counter.id}`}>{t('counterStyle')}</label>
           <select id={`counter-${counter.id}`} name="counter" defaultValue={counter.counter ?? defaultCounterId} className={styles.input}>
             {counterOptions.map((opt) => (
               <option key={opt.id} value={opt.id}>{opt.name}</option>
@@ -89,24 +150,24 @@ export default function EditCounterForm({ counter, onSuccess }: { counter: Count
         </div>
 
         <fieldset className={styles.field}>
-          <legend>Fondo</legend>
+          <legend>{t('background')}</legend>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <input type="radio" name="mediaType" value="image" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'IMAGE' || (counter.mediaType ?? 'image') === 'image'} /> Imagen
+              <input type="radio" name="mediaType" value="image" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'IMAGE' || (counter.mediaType ?? 'image') === 'image'} /> {t('backgroundImage')}
             </label>
             <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <input type="radio" name="mediaType" value="video" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video'} /> Video
+              <input type="radio" name="mediaType" value="video" defaultChecked={(counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video'} /> {t('backgroundVideo')}
             </label>
           </div>
         </fieldset>
 
         <div className={styles.field}>
-          <label htmlFor={`bg-${counter.id}`}>URL del fondo (opcional)</label>
+          <label htmlFor={`bg-${counter.id}`}>{t('backgroundUrl')}</label>
           <input id={`bg-${counter.id}`} name="bgUrl" type="url" defaultValue={counter.bgUrl ?? ''} className={styles.input} />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor={`poster-${counter.id}`}>URL poster (opcional)</label>
+          <label htmlFor={`poster-${counter.id}`}>{t('posterUrl')}</label>
           <input id={`poster-${counter.id}`} name="posterUrl" type="url" defaultValue={counter.posterUrl ?? ''} className={styles.input} />
         </div>
       </div>

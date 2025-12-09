@@ -22,6 +22,12 @@ model Counter {
   slug       String   @unique
   title      String
   description String?
+  titleFont       String? @default("roboto")
+  titleColor      String? @default("#FFFFFF")
+  titleSize       String? @default("md")
+  descriptionFont String? @default("roboto")
+  descriptionColor String? @default("#FFFFFF")
+  descriptionSize  String? @default("sm")
   bgUrl      String?
   posterUrl  String?
   mediaType  String   @default("IMAGE")

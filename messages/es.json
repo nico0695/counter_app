@@ -61,7 +61,12 @@
     "posterUrlPlaceholder": "https://... (para video o fallback)",
     "counterStyle": "Estilo de contador",
     "dateLabel": "Fecha y hora del evento (local)",
-    "dateRequired": "La fecha es requerida"
+    "dateRequired": "La fecha es requerida",
+    "titleStyles": "Estilos del Título",
+    "descriptionStyles": "Estilos de la Descripción",
+    "font": "Fuente",
+    "color": "Color",
+    "size": "Tamaño"
   },
   "link": {
     "copied": "Copiado al portapapeles",

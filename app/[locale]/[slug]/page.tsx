@@ -30,6 +30,12 @@ export default async function CounterLanding({ params }: Props) {
       facebook: true,
       externalLink1: true,
       externalLink2: true,
+      titleFont: true,
+      titleColor: true,
+      titleSize: true,
+      descriptionFont: true,
+      descriptionColor: true,
+      descriptionSize: true,
     },
   });
   if (!counter || !counter.enabled) return notFound();
@@ -49,6 +55,12 @@ export default async function CounterLanding({ params }: Props) {
       facebook={counter.facebook}
       externalLink1={counter.externalLink1}
       externalLink2={counter.externalLink2}
+      titleFont={counter.titleFont}
+      titleColor={counter.titleColor}
+      titleSize={counter.titleSize}
+      descriptionFont={counter.descriptionFont}
+      descriptionColor={counter.descriptionColor}
+      descriptionSize={counter.descriptionSize}
     />
   );
 }

@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { fromZonedTime } from "date-fns-tz";
 import { hash } from "bcryptjs";
 import { counterOptions, defaultCounterId } from "@/lib/counterOptions";
+import { defaultFontId, defaultSizeId, defaultColor } from "@/lib/textStyles";
 
 function slugify(input: string) {
   return input
@@ -36,6 +37,12 @@ export async function createCounter(formData: FormData) {
   const facebook = String(formData.get('facebook') || '').trim();
   const externalLink1 = String(formData.get('externalLink1') || '').trim();
   const externalLink2 = String(formData.get('externalLink2') || '').trim();
+  const titleFont = String(formData.get('titleFont') || defaultFontId).trim();
+  const titleColor = String(formData.get('titleColor') || defaultColor).trim();
+  const titleSize = String(formData.get('titleSize') || defaultSizeId).trim();
+  const descriptionFont = String(formData.get('descriptionFont') || defaultFontId).trim();
+  const descriptionColor = String(formData.get('descriptionColor') || defaultColor).trim();
+  const descriptionSize = String(formData.get('descriptionSize') || defaultSizeId).trim();
 
   if (!title || !date || !timezone) {
     throw new Error('Datos inválidos');
@@ -71,6 +78,12 @@ export async function createCounter(formData: FormData) {
       facebook: facebook || null,
       externalLink1: externalLink1 || null,
       externalLink2: externalLink2 || null,
+      titleFont,
+      titleColor,
+      titleSize,
+      descriptionFont,
+      descriptionColor,
+      descriptionSize,
     },
   });
 
@@ -110,6 +123,12 @@ export async function updateCounter(formData: FormData) {
   const facebook = String(formData.get('facebook') || '').trim();
   const externalLink1 = String(formData.get('externalLink1') || '').trim();
   const externalLink2 = String(formData.get('externalLink2') || '').trim();
+  const titleFont = String(formData.get('titleFont') || defaultFontId).trim();
+  const titleColor = String(formData.get('titleColor') || defaultColor).trim();
+  const titleSize = String(formData.get('titleSize') || defaultSizeId).trim();
+  const descriptionFont = String(formData.get('descriptionFont') || defaultFontId).trim();
+  const descriptionColor = String(formData.get('descriptionColor') || defaultColor).trim();
+  const descriptionSize = String(formData.get('descriptionSize') || defaultSizeId).trim();
 
   if (!id || !title || !date || !timezone) throw new Error('Datos inválidos');
 
@@ -137,6 +156,12 @@ export async function updateCounter(formData: FormData) {
       facebook: facebook || null,
       externalLink1: externalLink1 || null,
       externalLink2: externalLink2 || null,
+      titleFont,
+      titleColor,
+      titleSize,
+      descriptionFont,
+      descriptionColor,
+      descriptionSize,
       ...(selectedCounter ? { counter: selectedCounter } : {}),
     },
   });
@@ -260,6 +285,12 @@ export async function adminCreateCounterForUser(formData: FormData) {
   const facebook = String(formData.get('facebook') || '').trim();
   const externalLink1 = String(formData.get('externalLink1') || '').trim();
   const externalLink2 = String(formData.get('externalLink2') || '').trim();
+  const titleFont = String(formData.get('titleFont') || defaultFontId).trim();
+  const titleColor = String(formData.get('titleColor') || defaultColor).trim();
+  const titleSize = String(formData.get('titleSize') || defaultSizeId).trim();
+  const descriptionFont = String(formData.get('descriptionFont') || defaultFontId).trim();
+  const descriptionColor = String(formData.get('descriptionColor') || defaultColor).trim();
+  const descriptionSize = String(formData.get('descriptionSize') || defaultSizeId).trim();
   if (!userId || !title || !date || !timezone) throw new Error('Invalid data');
 
   const baseSlug = slugify(title) || 'evento';
@@ -287,6 +318,12 @@ export async function adminCreateCounterForUser(formData: FormData) {
       facebook: facebook || null,
       externalLink1: externalLink1 || null,
       externalLink2: externalLink2 || null,
+      titleFont,
+      titleColor,
+      titleSize,
+      descriptionFont,
+      descriptionColor,
+      descriptionSize,
     },
   });
   revalidatePath('/admin/links');

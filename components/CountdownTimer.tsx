@@ -1,10 +1,12 @@
 'use client';
 import styles from '@/components/CountdownTimer.module.scss';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { formatInTimeZone } from 'date-fns-tz';
 import { useTimezoneStore } from '@/store/timezone';
 import { counterMap } from '@/components/counters';
 import { defaultCounterId } from '@/lib/counterOptions';
+import StyledText from '@/components/StyledText';
+import { fontOptions } from '@/lib/textStyles';
 
 export default function CountdownTimer({
   title,
@@ -21,6 +23,12 @@ export default function CountdownTimer({
   facebook,
   externalLink1,
   externalLink2,
+  titleFont,
+  titleColor,
+  titleSize,
+  descriptionFont,
+  descriptionColor,
+  descriptionSize,
 }: {
   title: string;
   description?: string | null;
@@ -36,6 +44,12 @@ export default function CountdownTimer({
   facebook?: string | null;
   externalLink1?: string | null;
   externalLink2?: string | null;
+  titleFont?: string | null;
+  titleColor?: string | null;
+  titleSize?: string | null;
+  descriptionFont?: string | null;
+  descriptionColor?: string | null;
+  descriptionSize?: string | null;
 }) {
   const tz = useTimezoneStore((s) => s.timezone);
   const setTimezone = useTimezoneStore((s) => s.setTimezone);
@@ -62,6 +76,41 @@ export default function CountdownTimer({
   const [videoError, setVideoError] = useState(false);
   const canUseVideo = isVideo && rawBg.length > 0 && !videoError;
 
+  useEffect(() => {
+    const fontsToLoad: string[] = [];
+
+    if (titleFont) {
+      const font = fontOptions.find(f => f.id === titleFont);
+      if (font) fontsToLoad.push(font.family);
+    }
+
+    if (descriptionFont && descriptionFont !== titleFont) {
+      const font = fontOptions.find(f => f.id === descriptionFont);
+      if (font) fontsToLoad.push(font.family);
+    }
+
+    if (fontsToLoad.length === 0) return;
+
+    const linkId = 'google-fonts-countdown';
+    let linkElement = document.getElementById(linkId) as HTMLLinkElement | null;
+
+    if (!linkElement) {
+      linkElement = document.createElement('link');
+      linkElement.id = linkId;
+      linkElement.rel = 'stylesheet';
+      document.head.appendChild(linkElement);
+    }
+
+    // Build Google Fonts URL
+    const fontFamilies = fontsToLoad.map(f => `family=${f}`).join('&');
+    linkElement.href = `https://fonts.googleapis.com/css2?${fontFamilies}&display=swap`;
+
+    return () => {
+      const link = document.getElementById(linkId);
+      if (link) link.remove();
+    };
+  }, [titleFont, descriptionFont]);
+
   return (
     <div className={styles.container}>
       {canUseVideo ? (
@@ -84,9 +133,21 @@ export default function CountdownTimer({
       )}
       <div className={styles.content}>
         <div>
-          <div className={styles.title}>{title}</div>
+          <StyledText
+            text={title}
+            fontId={titleFont}
+            color={titleColor}
+            sizeId={titleSize}
+            className={styles.title}
+          />
           {description ? (
-            <div className={styles.desc}>{description}</div>
+            <StyledText
+              text={description}
+              fontId={descriptionFont}
+              color={descriptionColor}
+              sizeId={descriptionSize}
+              className={styles.desc}
+            />
           ) : null}
           <div className={styles.timer}>
             <ActiveCounter targetDateISO={targetDateISO} />

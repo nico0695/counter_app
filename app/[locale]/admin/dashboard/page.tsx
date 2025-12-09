@@ -56,6 +56,12 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
                     facebook: (c as any).facebook ?? null,
                     externalLink1: (c as any).externalLink1 ?? null,
                     externalLink2: (c as any).externalLink2 ?? null,
+                    titleFont: (c as any).titleFont ?? null,
+                    titleColor: (c as any).titleColor ?? null,
+                    titleSize: (c as any).titleSize ?? null,
+                    descriptionFont: (c as any).descriptionFont ?? null,
+                    descriptionColor: (c as any).descriptionColor ?? null,
+                    descriptionSize: (c as any).descriptionSize ?? null,
                   }} />
                 </div>
                 {c.description ? (

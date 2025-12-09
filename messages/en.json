@@ -61,7 +61,12 @@
     "posterUrlPlaceholder": "https://... (for video or fallback)",
     "counterStyle": "Counter Style",
     "dateLabel": "Event Date & Time (local)",
-    "dateRequired": "Date is required"
+    "dateRequired": "Date is required",
+    "titleStyles": "Title Styles",
+    "descriptionStyles": "Description Styles",
+    "font": "Font",
+    "color": "Color",
+    "size": "Size"
   },
   "link": {
     "copied": "Copied to clipboard",

@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import styles from "./CreateCounterForm.module.scss";
 import { useFormState, useFormStatus } from "react-dom";
 import { counterOptions, defaultCounterId } from "@/lib/counterOptions";
+import { fontOptions, sizeOptions, defaultFontId, defaultSizeId, defaultColor } from "@/lib/textStyles";
 
 type Props = { onSuccess?: () => void };
 
@@ -61,6 +62,58 @@ export default function CreateCounterForm({ onSuccess }: Props) {
         <label htmlFor="description">{t('description')}</label>
         <input id="description" name="description" placeholder={t('descriptionPlaceholder')} className={styles.input} />
       </div>
+
+      <fieldset className={styles.fieldFullWidth}>
+        <legend>{t('titleStyles')}</legend>
+        <div className={styles.formGrid}>
+          <div className={styles.field}>
+            <label htmlFor="titleFont">{t('font')}</label>
+            <select id="titleFont" name="titleFont" defaultValue={defaultFontId} className={styles.input}>
+              {fontOptions.map((font) => (
+                <option key={font.id} value={font.id}>{font.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="titleColor">{t('color')}</label>
+            <input id="titleColor" name="titleColor" type="color" defaultValue={defaultColor} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="titleSize">{t('size')}</label>
+            <select id="titleSize" name="titleSize" defaultValue={defaultSizeId} className={styles.input}>
+              {sizeOptions.map((size) => (
+                <option key={size.id} value={size.id}>{size.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className={styles.fieldFullWidth}>
+        <legend>{t('descriptionStyles')}</legend>
+        <div className={styles.formGrid}>
+          <div className={styles.field}>
+            <label htmlFor="descriptionFont">{t('font')}</label>
+            <select id="descriptionFont" name="descriptionFont" defaultValue={defaultFontId} className={styles.input}>
+              {fontOptions.map((font) => (
+                <option key={font.id} value={font.id}>{font.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="descriptionColor">{t('color')}</label>
+            <input id="descriptionColor" name="descriptionColor" type="color" defaultValue={defaultColor} className={styles.input} />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="descriptionSize">{t('size')}</label>
+            <select id="descriptionSize" name="descriptionSize" defaultValue="sm" className={styles.input}>
+              {sizeOptions.map((size) => (
+                <option key={size.id} value={size.id}>{size.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </fieldset>
 
       <div className={styles.formGrid}>
         <div className={styles.field}>
