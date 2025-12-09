@@ -1,0 +1,5 @@
+.root { display: grid; grid-auto-flow: column; gap: clamp(8px, 2vw, 16px); }
+.lcd { display: grid; gap: 6px; place-items: center; min-width: clamp(56px, 12vw, 120px); padding: clamp(8px, 2.5vw, 16px); background: #0a0a0a; border-radius: 8px; box-shadow: inset 0 0 8px rgba(0,255,150,0.2), 0 6px 18px rgba(0,0,0,0.35); }
+.digits { font-variant-numeric: tabular-nums; font-family: 'Courier New', Courier, monospace; color: #7affc1; text-shadow: 0 0 6px rgba(122,255,193,0.6); font-size: clamp(22px, 6vw, 56px); }
+.label { font-size: clamp(10px, 2.4vw, 14px); opacity: 0.85; text-transform: uppercase; letter-spacing: 0.06em; color: #9bd9bd; }
+.finished { opacity: 0.8; }

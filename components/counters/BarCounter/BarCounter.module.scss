@@ -1,0 +1,8 @@
+.root { display: grid; gap: 10px; }
+.item { display: grid; gap: 6px; }
+.header { display: flex; justify-content: space-between; align-items: baseline; }
+.label { font-size: clamp(10px, 2.4vw, 12px); opacity: 0.8; text-transform: uppercase; letter-spacing: 0.06em; }
+.value { font-variant-numeric: tabular-nums; }
+.track { height: 8px; background: rgba(255,255,255,0.15); border-radius: 999px; overflow: hidden; }
+.fill { height: 100%; background: rgba(255,255,255,0.9); border-radius: 999px; transition: width 0.6s ease; }
+.finished { opacity: 0.8; }

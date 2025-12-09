@@ -1,0 +1,8 @@
+.root { display: grid; grid-auto-flow: column; gap: clamp(8px, 2vw, 16px); align-items: end; }
+.group { display: grid; gap: 6px; justify-items: center; }
+.label { font-size: clamp(10px, 2.4vw, 14px); opacity: 0.85; text-transform: uppercase; letter-spacing: 0.06em; }
+.digit { position: relative; width: clamp(56px, 12vw, 120px); height: clamp(40px, 8vw, 80px); perspective: 400px; font-variant-numeric: tabular-nums; }
+.top, .bottom { position: absolute; left: 0; right: 0; display: grid; place-items: center; backface-visibility: hidden; border-radius: 8px; }
+.top { top: 0; height: 50%; background: rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.15); }
+.bottom { bottom: 0; height: 50%; background: rgba(255,255,255,0.06); border-top: 1px solid rgba(255,255,255,0.1); transform: rotateX(180deg); }
+.finished { opacity: 0.8; }
