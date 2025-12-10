@@ -16,9 +16,15 @@
     "description": "Create and share countdowns"
   },
   "home": {
-    "title": "Countdown Generator",
-    "subtitle": "Create and share event countdowns.",
-    "loginButton": "Login / Register"
+    "logo": "CountDown-0",
+    "title": "Create Moments, Share the Wait",
+    "freeBadge": "Free",
+    "features": {
+      "customize": "Create custom countdowns for your events",
+      "personalize": "Customize background, text and timezone",
+      "share": "Share a unique link on social media"
+    },
+    "loginButton": "Login / Sign Up"
   },
   "login": {
     "title": "Login / Register",

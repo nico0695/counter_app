@@ -16,9 +16,15 @@
     "description": "Crea y comparte cuentas regresivas"
   },
   "home": {
-    "title": "Generador de Cuentas Regresivas",
-    "subtitle": "Crea y comparte contadores de eventos.",
-    "loginButton": "Ingresar / Registrarse"
+    "logo": "CountDown-0",
+    "title": "Crea Momentos, Comparte la Espera",
+    "freeBadge": "Gratis",
+    "features": {
+      "customize": "Crea contadores personalizados para tus eventos",
+      "personalize": "Personaliza fondo, texto y zona horaria",
+      "share": "Comparte un link único en redes sociales"
+    },
+    "loginButton": "Ingresar / Crear Cuenta"
   },
   "login": {
     "title": "Ingresar / Registrarse",
