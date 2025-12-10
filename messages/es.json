@@ -27,14 +27,14 @@
     "loginButton": "Ingresar / Crear Cuenta"
   },
   "login": {
-    "title": "Ingresar / Registrarse",
-    "email": "Email",
+    "title": "Iniciar sesión o registrarse",
+    "email": "Correo electrónico",
     "emailPlaceholder": "tu@email.com",
     "password": "Contraseña",
     "passwordPlaceholder": "Mínimo 6 caracteres",
     "submit": "Continuar",
-    "hint": "Si el email no existe, se creará una cuenta automáticamente.",
-    "invalidCredentials": "Credenciales inválidas"
+    "hint": "Si tu correo no está registrado, crearemos una cuenta nueva automáticamente.",
+    "invalidCredentials": "Correo o contraseña incorrectos"
   },
   "nav": {
     "users": "Usuarios",

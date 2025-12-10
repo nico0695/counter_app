@@ -27,14 +27,14 @@
     "loginButton": "Login / Sign Up"
   },
   "login": {
-    "title": "Login / Register",
-    "email": "Email",
+    "title": "Sign in or create an account",
+    "email": "Email address",
     "emailPlaceholder": "your@email.com",
     "password": "Password",
     "passwordPlaceholder": "Minimum 6 characters",
     "submit": "Continue",
-    "hint": "If the email doesn't exist, an account will be created automatically.",
-    "invalidCredentials": "Invalid credentials"
+    "hint": "Don't have an account? We'll create one for you automatically.",
+    "invalidCredentials": "Incorrect email or password"
   },
   "nav": {
     "users": "Users",
