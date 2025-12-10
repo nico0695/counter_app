@@ -79,5 +79,10 @@
   "link": {
     "copied": "Copied to clipboard",
     "copy": "Copy link"
+  },
+  "qrPage": {
+    "backButton": "Back to Counter",
+    "copyLink": "Copy link",
+    "copied": "Copied"
   }
 }

@@ -79,5 +79,10 @@
   "link": {
     "copied": "Copiado al portapapeles",
     "copy": "Copiar enlace"
+  },
+  "qrPage": {
+    "backButton": "Volver al contador",
+    "copyLink": "Copiar enlace",
+    "copied": "Copiado"
   }
 }

@@ -1,0 +1,200 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 500px;
+  padding: 48px 32px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.qrWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.qr {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 300px;
+}
+
+.urlContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.urlLink {
+  flex: 1;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  word-break: break-all;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.copyButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.backButton {
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 32px 24px;
+    gap: 20px;
+  }
+
+  .qrWrapper {
+    padding: 20px;
+  }
+
+  .qr {
+    max-width: 250px;
+  }
+
+  .urlLink {
+    font-size: 13px;
+  }
+
+  .copyButton {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .backButton {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  .urlContainer {
+    padding: 0 8px;
+  }
+
+  .qrWrapper {
+    padding: 16px;
+  }
+
+  .qr {
+    max-width: 200px;
+  }
+
+  .urlLink {
+    font-size: 12px;
+  }
+
+  .copyButton {
+    width: 28px;
+    height: 28px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .backButton {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}

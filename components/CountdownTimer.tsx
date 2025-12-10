@@ -9,8 +9,10 @@ import TimezoneFooter from "@/components/countdown/TimezoneFooter";
 import type { ICounter } from "@/interfaces/counter.interfaces";
 import SocialLinks from "@/components/social/SocialLinks";
 import QRCodeDisplay from "@/components/QRCodeDisplay";
+import { useRouter } from "@/lib/navigation";
 
 export default function CountdownTimer({ counter }: { counter: ICounter }) {
+  const router = useRouter();
   const counterId = counter.counter ?? undefined;
   const effectiveId = counterId && counterMap[counterId] ? counterId : defaultCounterId;
   const ActiveCounter = counterMap[effectiveId];
@@ -26,6 +28,10 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
   const qrUrl = `${baseUrl}/${counter.slug}`;
+
+  const handleQRClick = () => {
+    router.push(`/${counter.slug}/qr`);
+  };
 
   useEffect(() => {
     const fontsToLoad: string[] = [];
@@ -115,7 +121,7 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
       </div>
       <TimezoneFooter targetDate={counter.targetDate} />
       <div className={styles.qrWrapper}>
-        <QRCodeDisplay url={qrUrl} />
+        <QRCodeDisplay url={qrUrl} onClick={handleQRClick} />
       </div>
     </div>
   );
