@@ -84,5 +84,10 @@
     "backButton": "Volver al contador",
     "copyLink": "Copiar enlace",
     "copied": "Copiado"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "Lo sentimos, no pudimos encontrar la página que buscas.",
+    "backHome": "Volver al inicio"
   }
 }

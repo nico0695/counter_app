@@ -1,9 +1,11 @@
-import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import CountdownTimer from "@/components/CountdownTimer";
-import type { ICounter } from "@/interfaces/counter.interfaces";
+import { notFound } from 'next/navigation';
+import { prisma } from '@/lib/prisma';
+import CountdownTimer from '@/components/CountdownTimer';
+import type { ICounter } from '@/interfaces/counter.interfaces';
 
-interface Props { params: { locale: string; slug: string } }
+interface Props {
+  params: { locale: string; slug: string };
+}
 
 export default async function CounterLanding({ params }: Props) {
   const { slug } = await Promise.resolve(params);
@@ -39,8 +41,8 @@ export default async function CounterLanding({ params }: Props) {
       descriptionSize: true,
     },
   });
+
   if (!counter || !counter.enabled) return notFound();
-  return (
-    <CountdownTimer counter={counter as ICounter} />
-  );
+
+  return <CountdownTimer counter={counter as ICounter} />;
 }
