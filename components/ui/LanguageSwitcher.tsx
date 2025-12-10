@@ -11,7 +11,8 @@ export default function LanguageSwitcher() {
   const pathname = useNextPathname();
 
   const isSlugPage = /^\/(en|es)\/[^\/]+$/.test(pathname);
-  if (isSlugPage) return null;
+  const isKnownRoute = /^\/(en|es)\/(login|admin)/.test(pathname);
+  if (isSlugPage && !isKnownRoute) return null;
 
   const switchLocale = () => {
     const nextLocale = locale === 'en' ? 'es' : 'en';
