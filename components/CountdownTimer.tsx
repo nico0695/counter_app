@@ -8,6 +8,7 @@ import { fontOptions } from "@/lib/textStyles";
 import TimezoneFooter from "@/components/countdown/TimezoneFooter";
 import type { ICounter } from "@/interfaces/counter.interfaces";
 import SocialLinks from "@/components/social/SocialLinks";
+import QRCodeDisplay from "@/components/QRCodeDisplay";
 
 export default function CountdownTimer({ counter }: { counter: ICounter }) {
   const counterId = counter.counter ?? undefined;
@@ -22,6 +23,9 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
     counter.posterUrl && counter.posterUrl.length > 0 ? counter.posterUrl : '/bg/default_p.jpeg';
   const [videoError, setVideoError] = useState(false);
   const canUseVideo = isVideo && rawBg.length > 0 && !videoError;
+
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const qrUrl = `${baseUrl}/${counter.slug}`;
 
   useEffect(() => {
     const fontsToLoad: string[] = [];
@@ -110,6 +114,9 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
         </div>
       </div>
       <TimezoneFooter targetDate={counter.targetDate} />
+      <div className={styles.qrWrapper}>
+        <QRCodeDisplay url={qrUrl} />
+      </div>
     </div>
   );
 }
