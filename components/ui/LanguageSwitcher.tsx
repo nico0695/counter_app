@@ -3,16 +3,12 @@
 import { useLocale } from 'next-intl';
 import { usePathname as useNextPathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import styles from './LanguageSwitcher.module.scss';
+import styles from './TopNavButtons.module.scss';
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher(): JSX.Element {
   const locale = useLocale();
   const router = useRouter();
   const pathname = useNextPathname();
-
-  const isSlugPage = /^\/(en|es)\/[^\/]+$/.test(pathname);
-  const isKnownRoute = /^\/(en|es)\/(login|admin)/.test(pathname);
-  if (isSlugPage && !isKnownRoute) return null;
 
   const switchLocale = () => {
     const nextLocale = locale === 'en' ? 'es' : 'en';
@@ -28,7 +24,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={switchLocale}
-      className={styles.languageSwitcher}
+      className={styles.button}
       aria-label={`Switch to ${displayText}`}
       title={`Switch to ${displayText}`}
     >

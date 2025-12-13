@@ -39,7 +39,8 @@
   },
   "nav": {
     "users": "Usuarios",
-    "links": "Enlaces"
+    "links": "Enlaces",
+    "logout": "Cerrar sesión"
   },
   "dashboard": {
     "title": "Mis contadores",

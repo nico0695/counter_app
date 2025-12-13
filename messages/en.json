@@ -39,7 +39,8 @@
   },
   "nav": {
     "users": "Users",
-    "links": "Links"
+    "links": "Links",
+    "logout": "Logout"
   },
   "dashboard": {
     "title": "My Counters",

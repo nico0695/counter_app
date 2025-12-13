@@ -1,9 +1,14 @@
-.languageSwitcher {
+.container {
   position: fixed;
   top: 1rem;
   right: 1rem;
   z-index: 1000;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
 
+.button {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
