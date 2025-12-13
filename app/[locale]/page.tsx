@@ -1,5 +1,6 @@
 import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
+import { getSession } from '@/lib/auth';
 import styles from './page.module.scss';
 
 interface HomePageProps {
@@ -9,6 +10,7 @@ interface HomePageProps {
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = params;
   const t = await getTranslations({ locale, namespace: 'home' });
+  const session = await getSession();
 
   return (
     <main className={styles.container}>
@@ -60,8 +62,8 @@ export default async function HomePage({ params }: HomePageProps) {
           </ul>
 
 
-          <Link className={styles.ctaButton} href="/login">
-            {t('loginButton')}
+          <Link className={styles.ctaButton} href={session?.user ? "/admin/dashboard" : "/login"}>
+            {session?.user ? t('dashboardButton') : t('loginButton')}
           </Link>
           <div className={styles.badge}>{t('freeBadge')}</div>
         </div>

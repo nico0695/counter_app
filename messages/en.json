@@ -24,7 +24,8 @@
       "personalize": "Customize background, text and timezone",
       "share": "Share a unique link on social media"
     },
-    "loginButton": "Login / Sign Up"
+    "loginButton": "Login / Sign Up",
+    "dashboardButton": "Go to Dashboard"
   },
   "login": {
     "title": "Sign in or create an account",

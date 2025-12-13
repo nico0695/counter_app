@@ -24,7 +24,8 @@
       "personalize": "Personaliza fondo, texto y zona horaria",
       "share": "Comparte un link único en redes sociales"
     },
-    "loginButton": "Ingresar / Crear Cuenta"
+    "loginButton": "Ingresar / Crear Cuenta",
+    "dashboardButton": "Ir al Dashboard"
   },
   "login": {
     "title": "Iniciar sesión o registrarse",
