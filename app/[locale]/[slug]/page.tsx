@@ -29,7 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = counter.title || "Countdown Timer";
   const description = counter.description || "Check out this countdown!";
-  const url = `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/${locale}/${slug}`;
+  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  const url = `${baseUrl}/${locale}/${slug}`;
+  const ogImageUrl = `${baseUrl}/${locale}/${slug}/opengraph-image`;
 
   return {
     title,
@@ -41,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       images: [
         {
-          url: `/${locale}/${slug}/opengraph-image`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: title,
@@ -52,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: [`/${locale}/${slug}/opengraph-image`],
+      images: [ogImageUrl],
     },
   };
 }
