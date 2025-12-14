@@ -85,9 +85,8 @@ export default async function Image({ params }: Props) {
 
     if (counter.mediaType === "VIDEO") {
       // For videos: use poster if available, otherwise use default image
-      backgroundImageUrl =
-        counter.posterUrl ||
-        `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/bg/default_bg.jpeg`;
+      const baseUrl = process.env.PUBLIC_URL || process.env.NEXTAUTH_URL || "http://localhost:3000";
+      backgroundImageUrl = counter.posterUrl || `${baseUrl}/bg/default_bg.jpeg`;
     } else {
       // For images: use bgUrl directly
       backgroundImageUrl = counter.bgUrl || null;

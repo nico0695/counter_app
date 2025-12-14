@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = counter.title || "Countdown Timer";
   const description = counter.description || "Check out this countdown!";
-  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  const baseUrl = process.env.PUBLIC_URL || process.env.NEXTAUTH_URL || "http://localhost:3000";
   const url = `${baseUrl}/${locale}/${slug}`;
   const ogImageUrl = `${baseUrl}/${locale}/${slug}/opengraph-image`;
 

@@ -32,7 +32,9 @@ export async function generateMetadata({
   const messages = (await getMessages({ locale })) as Messages;
 
   return {
-    metadataBase: new URL(process.env.NEXTAUTH_URL || "http://localhost:3000"),
+    metadataBase: new URL(
+      process.env.PUBLIC_URL || process.env.NEXTAUTH_URL || "http://localhost:3000"
+    ),
     title: messages.metadata?.title || "Countdown Generator",
     description: messages.metadata?.description || "Create and share countdowns",
   };
