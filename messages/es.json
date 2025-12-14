@@ -54,7 +54,9 @@
     "editTitle": "Editar contador",
     "deleteTitle": "Eliminar contador",
     "deleteConfirm": "¿Seguro que deseas eliminar \"{title}\"?",
-    "deleteFailed": "No se pudo eliminar"
+    "deleteFailed": "No se pudo eliminar",
+    "back": "Atrás",
+    "saved": "Guardado exitosamente"
   },
   "form": {
     "title": "Título",
@@ -62,6 +64,9 @@
     "titleMinLength": "El título debe tener al menos 3 caracteres",
     "description": "Descripción",
     "descriptionPlaceholder": "Breve descripción",
+    "basicInfo": "Información Básica",
+    "textStyling": "Estilos de Texto",
+    "dateAndDesign": "Fecha y Diseño",
     "background": "Fondo",
     "backgroundImage": "Imagen",
     "backgroundVideo": "Video",
@@ -76,7 +81,10 @@
     "descriptionStyles": "Estilos de la Descripción",
     "font": "Fuente",
     "color": "Color",
-    "size": "Tamaño"
+    "size": "Tamaño",
+    "mediaType": "Tipo de Medio",
+    "socialMedia": "Redes Sociales y Enlaces (opcional)",
+    "externalLink": "Enlace Externo"
   },
   "link": {
     "copied": "Copiado al portapapeles",

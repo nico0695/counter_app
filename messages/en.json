@@ -54,7 +54,9 @@
     "editTitle": "Edit Counter",
     "deleteTitle": "Delete Counter",
     "deleteConfirm": "Are you sure you want to delete \"{title}\"?",
-    "deleteFailed": "Could not delete"
+    "deleteFailed": "Could not delete",
+    "back": "Back",
+    "saved": "Saved successfully"
   },
   "form": {
     "title": "Title",
@@ -62,6 +64,9 @@
     "titleMinLength": "Title must be at least 3 characters",
     "description": "Description",
     "descriptionPlaceholder": "Brief description",
+    "basicInfo": "Basic Information",
+    "textStyling": "Text Styling",
+    "dateAndDesign": "Date & Design",
     "background": "Background",
     "backgroundImage": "Image",
     "backgroundVideo": "Video",
@@ -76,7 +81,10 @@
     "descriptionStyles": "Description Styles",
     "font": "Font",
     "color": "Color",
-    "size": "Size"
+    "size": "Size",
+    "mediaType": "Media Type",
+    "socialMedia": "Social Media & Links (optional)",
+    "externalLink": "External Link"
   },
   "link": {
     "copied": "Copied to clipboard",

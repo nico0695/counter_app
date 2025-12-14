@@ -1,0 +1,70 @@
+.container {
+  min-height: 100vh;
+  background:
+    radial-gradient(1000px 600px at 10% 10%, hsla(0, 0%, 100%, 0.06), transparent),
+    radial-gradient(800px 500px at 90% 20%, rgba(59, 130, 246, 0.12), transparent),
+    #0b1020;
+  padding: 24px 16px;
+
+  @media (min-width: 768px) {
+    padding: 40px 32px;
+  }
+}
+
+.header {
+  max-width: 900px;
+  margin: 0 auto 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #d1d5db;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 120ms ease;
+  width: fit-content;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: translateX(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+  }
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f3f4f6;
+  margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+  }
+}
+
+.content {
+  width: 100%;
+}

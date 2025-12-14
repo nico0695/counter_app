@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import styles from "./CounterActions.module.scss";
-import EditCounterForm from "@/components/admin/EditCounterForm";
 import { deleteCounterAction } from "@/app/[locale]/admin/actions";
 import { useToast } from "@/components/ui/ToastProvider";
 import { useRouter } from "@/lib/navigation";
@@ -14,7 +13,7 @@ type Counter = {
   bgUrl: string | null;
   posterUrl?: string | null;
   mediaType?: "IMAGE" | "VIDEO" | "image" | "video";
-  targetDate: string; // ISO
+  targetDate: string;
   timezone: string;
   slug: string;
   counter?: string | null;
@@ -33,7 +32,6 @@ type Counter = {
 };
 
 export default function CounterActions({ counter }: { counter: Counter }) {
-  const [editOpen, setEditOpen] = useState(false);
   const [delOpen, setDelOpen] = useState(false);
   const { show } = useToast();
   const router = useRouter();
@@ -53,7 +51,10 @@ export default function CounterActions({ counter }: { counter: Counter }) {
 
   return (
     <div className={styles.row}>
-      <button className={styles.btn} onClick={() => setEditOpen(true)}>
+      <button
+        className={styles.btn}
+        onClick={() => router.push(`/admin/counter/edit/${counter.id}`)}
+      >
         Editar
       </button>
       <button className={`${styles.btn} ${styles.danger}`} onClick={() => setDelOpen(true)}>
@@ -61,28 +62,12 @@ export default function CounterActions({ counter }: { counter: Counter }) {
       </button>
 
       <Dialog
-        open={editOpen}
-        onOpenChange={setEditOpen}
-        title="Editar contador"
-        titleId={`edit-title-${counter.id}`}
-      >
-        <EditCounterForm
-          counter={counter}
-          onSuccess={() => {
-            setEditOpen(false);
-            router.refresh();
-            show("Guardado");
-          }}
-        />
-      </Dialog>
-
-      <Dialog
         open={delOpen}
         onOpenChange={setDelOpen}
         title="Eliminar contador"
         titleId={`del-title-${counter.id}`}
       >
-        <p>¿Seguro que deseas eliminar “{counter.title}”?</p>
+        <p>¿Seguro que deseas eliminar "{counter.title}"?</p>
         <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginTop: 12 }}>
           <button className={styles.btn} onClick={() => setDelOpen(false)}>
             Cancelar
