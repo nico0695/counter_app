@@ -23,7 +23,9 @@ Tech stack: Next.js (App Router) + TypeScript, Prisma (SQLite by default), NextA
 **Environment**
 
 - Required: `DATABASE_URL`, `NEXTAUTH_URL`, `NEXTAUTH_SECRET`.
+- Optional: `PUBLIC_URL` (for production/reverse proxy setups - used for OG images and social sharing).
 - Copy `.env.example` to `.env` and fill values.
+- **Reverse proxy users**: Set `NEXTAUTH_URL=http://localhost:3000` and `PUBLIC_URL=https://yourdomain.com`.
 
 **Install & Run**
 
@@ -69,6 +71,17 @@ Notes:
 - Hook: `lib/useCountdown.ts` provides ticking logic and time breakdown.
 - Public page rendering: `components/CountdownTimer.tsx` uses the selected `counterId` (falls back to `defaultCounterId`).
 - Admin forms include a `<select>` to choose the style when creating/editing.
+
+**SEO & Social Media Sharing**
+
+- Dynamic Open Graph images generated for each counter (`app/[locale]/[slug]/opengraph-image.tsx`).
+- Optimized metadata for Twitter, Facebook, LinkedIn, and WhatsApp sharing.
+- Smart fallback system:
+  - Image counters use background image
+  - Video counters use poster image
+  - Videos without poster use default image (`/public/bg/default_bg.jpeg`)
+- Branded design with "CountDown-0" logo for recognition.
+- Two-row date format for clarity (date + time with timezone).
 
 **Admin Flow**
 
