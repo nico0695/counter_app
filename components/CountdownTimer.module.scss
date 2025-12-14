@@ -56,6 +56,12 @@
   pointer-events: auto;
 }
 
+@media (max-width: 767px) {
+  .qrWrapper {
+    display: none;
+  }
+}
+
 @media (max-width: 380px) {
   .content {
     padding: 16px;
