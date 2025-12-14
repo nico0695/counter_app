@@ -10,8 +10,10 @@ import type { ICounter } from "@/interfaces/counter.interfaces";
 import SocialLinks from "@/components/social/SocialLinks";
 import QRCodeDisplay from "@/components/QRCodeDisplay";
 import { useRouter } from "@/lib/navigation";
+import { useTranslations } from "next-intl";
 
 export default function CountdownTimer({ counter }: { counter: ICounter }) {
+  const t = useTranslations("home");
   const router = useRouter();
   const counterId = counter.counter ?? undefined;
   const effectiveId = counterId && counterMap[counterId] ? counterId : defaultCounterId;
@@ -69,6 +71,7 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
 
   return (
     <div className={styles.container}>
+      <div className={styles.logo}>{t("logo")}</div>
       {canUseVideo ? (
         <video
           className={styles.bgVideo}
