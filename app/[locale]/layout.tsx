@@ -1,14 +1,14 @@
-import '@/styles/globals.scss';
-import { ReactNode } from 'react';
-import { Metadata } from 'next';
-import { ToastProvider } from '@/components/ui/ToastProvider';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import { locales } from '@/i18n';
-import TopNavButtons from '@/components/ui/TopNavButtons';
-import ClientProviders from '@/components/providers/ClientProviders';
-import Script from 'next/script';
+import "@/styles/globals.scss";
+import { ReactNode } from "react";
+import { Metadata } from "next";
+import { ToastProvider } from "@/components/ui/ToastProvider";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { locales } from "@/i18n";
+import TopNavButtons from "@/components/ui/TopNavButtons";
+import ClientProviders from "@/components/providers/ClientProviders";
+import Script from "next/script";
 
 interface Messages {
   metadata?: {
@@ -32,9 +32,8 @@ export async function generateMetadata({
   const messages = (await getMessages({ locale })) as Messages;
 
   return {
-    title: messages.metadata?.title || 'Countdown Generator',
-    description:
-      messages.metadata?.description || 'Create and share countdowns',
+    title: messages.metadata?.title || "Countdown Generator",
+    description: messages.metadata?.description || "Create and share countdowns",
   };
 }
 

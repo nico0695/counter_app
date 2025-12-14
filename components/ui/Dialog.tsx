@@ -39,8 +39,12 @@ export default function Dialog({ open, onOpenChange, title, titleId, children }:
     >
       <div className={`${styles.dialog} ${styles.dialogOpen}`}>
         <div className={styles.header}>
-          <div id={titleId} className={styles.title}>{title}</div>
-          <button className={styles.close} onClick={() => onOpenChange(false)} aria-label="Cerrar">✕</button>
+          <div id={titleId} className={styles.title}>
+            {title}
+          </div>
+          <button className={styles.close} onClick={() => onOpenChange(false)} aria-label="Cerrar">
+            ✕
+          </button>
         </div>
         {children}
       </div>

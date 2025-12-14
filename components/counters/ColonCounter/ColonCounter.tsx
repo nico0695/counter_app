@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import styles from './ColonCounter.module.scss';
-import { useCountdown } from '@/lib/useCountdown';
+import styles from "./ColonCounter.module.scss";
+import { useCountdown } from "@/lib/useCountdown";
 
 function pad2(n: number) {
-  return String(n).padStart(2, '0');
+  return String(n).padStart(2, "0");
 }
 
 export default function ColonCounter({ targetDateISO }: { targetDateISO: string }) {

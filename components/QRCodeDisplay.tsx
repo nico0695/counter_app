@@ -10,7 +10,7 @@ interface QRCodeDisplayProps {
 export default function QRCodeDisplay({ url, onClick }: QRCodeDisplayProps) {
   return (
     <div
-      className={`${styles.qrContainer} ${onClick ? styles.clickable : ''}`}
+      className={`${styles.qrContainer} ${onClick ? styles.clickable : ""}`}
       onClick={onClick}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}

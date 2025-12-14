@@ -7,15 +7,28 @@
 .btn {
   padding: 6px 8px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
   color: #e5e7eb;
   cursor: pointer;
-  transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    transform 120ms ease;
 }
-.btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.2); }
-.btn:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.btn:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
 
-.danger { border-color: rgba(239, 68, 68, 0.35); color: #fecaca; }
-.danger:hover { border-color: rgba(239, 68, 68, 0.55); }
-
+.danger {
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+.danger:hover {
+  border-color: rgba(239, 68, 68, 0.55);
+}

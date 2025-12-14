@@ -32,23 +32,20 @@ export default function CreateDialog({
             {tDashboard("countersUsed", { current: currentCount, max: maxCounters })}
           </div>
         )}
-        <button
-          className={styles.trigger}
-          onClick={() => setOpen(true)}
-          disabled={isLimitReached}
-        >
+        <button className={styles.trigger} onClick={() => setOpen(true)} disabled={isLimitReached}>
           {t("createButton")}
         </button>
       </div>
 
-      {isLimitReached && (
-        <div className={styles.limitAlert}>
-          {tDashboard("limitReached")}
-        </div>
-      )}
+      {isLimitReached && <div className={styles.limitAlert}>{tDashboard("limitReached")}</div>}
 
       <Dialog open={open} onOpenChange={setOpen} title={t("createTitle")} titleId="create-title">
-        <CreateCounterForm onSuccess={() => { setOpen(false); router.refresh(); }} />
+        <CreateCounterForm
+          onSuccess={() => {
+            setOpen(false);
+            router.refresh();
+          }}
+        />
       </Dialog>
     </div>
   );

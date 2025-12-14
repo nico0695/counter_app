@@ -11,13 +11,7 @@ type StyledTextProps = {
 /**
  * Component to render text with custom styling (font, color, size)
  */
-export default function StyledText({
-  text,
-  fontId,
-  color,
-  sizeId,
-  className,
-}: StyledTextProps) {
+export default function StyledText({ text, fontId, color, sizeId, className }: StyledTextProps) {
   const fontFamily = fontId ? getFontFamily(fontId) : undefined;
   const fontSize = sizeId ? getFontSize(sizeId) : undefined;
   const textColor = color || undefined;

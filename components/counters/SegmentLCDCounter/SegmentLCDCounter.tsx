@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import styles from './SegmentLCDCounter.module.scss';
-import { useCountdown } from '@/lib/useCountdown';
-import { pad2 } from '@/lib/counterHelpers';
+import styles from "./SegmentLCDCounter.module.scss";
+import { useCountdown } from "@/lib/useCountdown";
+import { pad2 } from "@/lib/counterHelpers";
 
 function LCD({ value, label }: { value: number; label: string }) {
   return (

@@ -1,6 +1,6 @@
-import { prisma } from '@/lib/prisma';
-import { getSession } from '@/lib/auth';
-import styles from './page.module.scss';
+import { prisma } from "@/lib/prisma";
+import { getSession } from "@/lib/auth";
+import styles from "./page.module.scss";
 import {
   adminCreateUser,
   adminDeleteUser,
@@ -8,15 +8,16 @@ import {
   adminToggleUserBlocked,
   adminUpdateUserRole,
   adminUpdateUserMaxCounters,
-} from '../actions';
+} from "../actions";
+import { SessionUser } from "@/interfaces/auth.interfaces";
 
 export default async function AdminUsersPage() {
   const session = await getSession();
-  const role = (session?.user as any)?.role as string | undefined;
-  if (role !== 'ADMIN') return null;
+  const user = session?.user as SessionUser | undefined;
+  if (user?.role !== "ADMIN") return null;
 
   const users = await prisma.user.findMany({
-    orderBy: { email: 'asc' },
+    orderBy: { email: "asc" },
     include: { _count: { select: { counters: true } } },
   });
 
@@ -43,16 +44,9 @@ export default async function AdminUsersPage() {
             <tr key={u.id}>
               <td>{u.email}</td>
               <td>
-                <form
-                  className={styles.formInline}
-                  action={adminUpdateUserRole}
-                >
+                <form className={styles.formInline} action={adminUpdateUserRole}>
                   <input type="hidden" name="userId" value={u.id} />
-                  <select
-                    name="role"
-                    defaultValue={u.role}
-                    className={styles.select}
-                  >
+                  <select name="role" defaultValue={u.role} className={styles.select}>
                     <option value="USER">USER</option>
                     <option value="ADMIN">ADMIN</option>
                   </select>
@@ -60,28 +54,16 @@ export default async function AdminUsersPage() {
                 </form>
               </td>
               <td>
-                <form
-                  className={styles.formInline}
-                  action={adminToggleUserBlocked}
-                >
+                <form className={styles.formInline} action={adminToggleUserBlocked}>
                   <input type="hidden" name="userId" value={u.id} />
-                  <input
-                    type="hidden"
-                    name="blocked"
-                    value={u.blocked ? 'false' : 'true'}
-                  />
-                  <button className={styles.button}>
-                    {u.blocked ? 'Unblock' : 'Block'}
-                  </button>
+                  <input type="hidden" name="blocked" value={u.blocked ? "false" : "true"} />
+                  <button className={styles.button}>{u.blocked ? "Unblock" : "Block"}</button>
                 </form>
               </td>
               <td>{(u as any)._count.counters}</td>
               <td>
-                {u.role === 'USER' ? (
-                  <form
-                    className={styles.formInline}
-                    action={adminUpdateUserMaxCounters}
-                  >
+                {u.role === "USER" ? (
+                  <form className={styles.formInline} action={adminUpdateUserMaxCounters}>
                     <input type="hidden" name="userId" value={u.id} />
                     <input
                       type="number"
@@ -89,7 +71,7 @@ export default async function AdminUsersPage() {
                       defaultValue={u.maxCounters}
                       min="1"
                       className={styles.input}
-                      style={{ width: '60px' }}
+                      style={{ width: "60px" }}
                     />
                     <button className={styles.button}>Save</button>
                   </form>
@@ -105,11 +87,7 @@ export default async function AdminUsersPage() {
                   </form>
                   <form action={adminDeleteUser}>
                     <input type="hidden" name="userId" value={u.id} />
-                    <button
-                      className={`${styles.button} ${styles.buttonDanger}`}
-                    >
-                      Delete
-                    </button>
+                    <button className={`${styles.button} ${styles.buttonDanger}`}>Delete</button>
                   </form>
                 </div>
               </td>
@@ -124,13 +102,7 @@ export default async function AdminUsersPage() {
 function CreateUserForm() {
   return (
     <form className={styles.createBox} action={adminCreateUser}>
-      <input
-        name="email"
-        type="email"
-        required
-        placeholder="email"
-        className={styles.input}
-      />
+      <input name="email" type="email" required placeholder="email" className={styles.input} />
       <input
         name="password"
         type="password"
@@ -142,9 +114,7 @@ function CreateUserForm() {
         <option value="USER">USER</option>
         <option value="ADMIN">ADMIN</option>
       </select>
-      <button className={`${styles.button} ${styles.buttonPrimary}`}>
-        Create
-      </button>
+      <button className={`${styles.button} ${styles.buttonPrimary}`}>Create</button>
     </form>
   );
 }

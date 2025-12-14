@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import styles from './FlipClockCounter.module.scss';
-import { useCountdown } from '@/lib/useCountdown';
-import { pad2 } from '@/lib/counterHelpers';
+import styles from "./FlipClockCounter.module.scss";
+import { useCountdown } from "@/lib/useCountdown";
+import { pad2 } from "@/lib/counterHelpers";
 
 function Digit({ value }: { value: number }) {
   const text = pad2(value);

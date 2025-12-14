@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation';
-import { prisma } from '@/lib/prisma';
-import CountdownTimer from '@/components/CountdownTimer';
-import type { ICounter } from '@/interfaces/counter.interfaces';
+import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import CountdownTimer from "@/components/CountdownTimer";
+import type { ICounter } from "@/interfaces/counter.interfaces";
 
 interface Props {
   params: { locale: string; slug: string };

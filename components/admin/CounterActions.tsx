@@ -13,7 +13,7 @@ type Counter = {
   description: string | null;
   bgUrl: string | null;
   posterUrl?: string | null;
-  mediaType?: 'IMAGE' | 'VIDEO' | 'image' | 'video';
+  mediaType?: "IMAGE" | "VIDEO" | "image" | "video";
   targetDate: string; // ISO
   timezone: string;
   slug: string;
@@ -40,31 +40,56 @@ export default function CounterActions({ counter }: { counter: Counter }) {
 
   async function onDelete() {
     const fd = new FormData();
-    fd.set('id', counter.id);
-    const res = await deleteCounterAction({} as any, fd as any) as any;
+    fd.set("id", counter.id);
+    const res = (await deleteCounterAction({} as any, fd as any)) as any;
     if (res?.ok) {
       setDelOpen(false);
-      show('Eliminado');
+      show("Eliminado");
       router.refresh();
     } else {
-      show(res?.error ?? 'No se pudo eliminar');
+      show(res?.error ?? "No se pudo eliminar");
     }
   }
 
   return (
     <div className={styles.row}>
-      <button className={styles.btn} onClick={() => setEditOpen(true)}>Editar</button>
-      <button className={`${styles.btn} ${styles.danger}`} onClick={() => setDelOpen(true)}>Eliminar</button>
+      <button className={styles.btn} onClick={() => setEditOpen(true)}>
+        Editar
+      </button>
+      <button className={`${styles.btn} ${styles.danger}`} onClick={() => setDelOpen(true)}>
+        Eliminar
+      </button>
 
-      <Dialog open={editOpen} onOpenChange={setEditOpen} title="Editar contador" titleId={`edit-title-${counter.id}`}>
-        <EditCounterForm counter={counter} onSuccess={() => { setEditOpen(false); router.refresh(); show('Guardado'); }} />
+      <Dialog
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        title="Editar contador"
+        titleId={`edit-title-${counter.id}`}
+      >
+        <EditCounterForm
+          counter={counter}
+          onSuccess={() => {
+            setEditOpen(false);
+            router.refresh();
+            show("Guardado");
+          }}
+        />
       </Dialog>
 
-      <Dialog open={delOpen} onOpenChange={setDelOpen} title="Eliminar contador" titleId={`del-title-${counter.id}`}>
+      <Dialog
+        open={delOpen}
+        onOpenChange={setDelOpen}
+        title="Eliminar contador"
+        titleId={`del-title-${counter.id}`}
+      >
         <p>¿Seguro que deseas eliminar “{counter.title}”?</p>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 12 }}>
-          <button className={styles.btn} onClick={() => setDelOpen(false)}>Cancelar</button>
-          <button className={`${styles.btn} ${styles.danger}`} onClick={onDelete}>Eliminar</button>
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginTop: 12 }}>
+          <button className={styles.btn} onClick={() => setDelOpen(false)}>
+            Cancelar
+          </button>
+          <button className={`${styles.btn} ${styles.danger}`} onClick={onDelete}>
+            Eliminar
+          </button>
         </div>
       </Dialog>
     </div>

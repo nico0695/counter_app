@@ -4,7 +4,7 @@ import QRCodeLarge from "@/components/QRCodeLarge";
 import styles from "./page.module.scss";
 
 interface Props {
-  params: { locale: string; slug: string }
+  params: { locale: string; slug: string };
 }
 
 export default async function QRPage({ params }: Props) {
@@ -25,11 +25,11 @@ export default async function QRPage({ params }: Props) {
   if (!counter || !counter.enabled) return notFound();
 
   const isVideo =
-    (counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video';
-  const rawBg = (counter.bgUrl ?? '').trim();
-  const effectiveBg = rawBg.length > 0 ? rawBg : '/bg/default_bg.jpeg';
+    (counter.mediaType ?? "IMAGE") === "VIDEO" || (counter.mediaType ?? "image") === "video";
+  const rawBg = (counter.bgUrl ?? "").trim();
+  const effectiveBg = rawBg.length > 0 ? rawBg : "/bg/default_bg.jpeg";
   const effectivePoster =
-    counter.posterUrl && counter.posterUrl.length > 0 ? counter.posterUrl : '/bg/default_p.jpeg';
+    counter.posterUrl && counter.posterUrl.length > 0 ? counter.posterUrl : "/bg/default_p.jpeg";
 
   // Build the QR URL (will be completed on client side)
   const qrUrl = `/${counter.slug}`;
@@ -48,10 +48,7 @@ export default async function QRPage({ params }: Props) {
           preload="auto"
         />
       ) : (
-        <div
-          className={styles.bg}
-          style={{ backgroundImage: `url(${effectiveBg})` }}
-        />
+        <div className={styles.bg} style={{ backgroundImage: `url(${effectiveBg})` }} />
       )}
       <div className={styles.content}>
         <QRCodeLarge url={qrUrl} slug={counter.slug} />

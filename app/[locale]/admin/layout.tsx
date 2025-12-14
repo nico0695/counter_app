@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { Link } from "@/lib/navigation";
 import { getTranslations } from "next-intl/server";
 import styles from "./layout.module.scss";
+import { SessionUser } from "@/interfaces/auth.interfaces";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -17,16 +18,20 @@ export default async function AdminLayout({ children, params }: AdminLayoutProps
   if (!session?.user) {
     redirect("/login");
   }
-  const role = (session.user as any)?.role as string | undefined;
-  const isAdmin = role === 'ADMIN';
+  const user = session.user as SessionUser;
+  const isAdmin = user.role === "ADMIN";
 
   return (
     <div className={styles.container}>
       {isAdmin ? (
         <header className={styles.header}>
           <nav className={styles.nav} aria-label="Admin navigation">
-            <Link className={styles.link} href="/admin/users">{t("users")}</Link>
-            <Link className={styles.link} href="/admin/links">{t("links")}</Link>
+            <Link className={styles.link} href="/admin/users">
+              {t("users")}
+            </Link>
+            <Link className={styles.link} href="/admin/links">
+              {t("links")}
+            </Link>
           </nav>
         </header>
       ) : null}

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import styles from './GlassCounter.module.scss';
-import { useCountdown } from '@/lib/useCountdown';
-import { pad2 } from '@/lib/counterHelpers';
+import styles from "./GlassCounter.module.scss";
+import { useCountdown } from "@/lib/useCountdown";
+import { pad2 } from "@/lib/counterHelpers";
 
 function Panel({ label, value }: { label: string; value: number }) {
   return (

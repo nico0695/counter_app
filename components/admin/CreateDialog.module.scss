@@ -23,15 +23,23 @@
 .trigger {
   padding: 8px 12px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background: linear-gradient(180deg, #1f2937, #111827);
   color: #f9fafb;
   cursor: pointer;
-  transition: transform 120ms ease, border-color 120ms ease;
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease;
 }
 
-.trigger:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.2); }
-.trigger:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
+.trigger:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.trigger:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
 .trigger:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -49,22 +57,30 @@
   transition: opacity 150ms ease;
 }
 
-.overlayOpen { opacity: 1; pointer-events: auto; }
+.overlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .dialog {
   width: 100%;
   max-width: 520px;
   background: rgb(17, 24, 39);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   transform: translateY(6px);
   opacity: 0.98;
-  transition: transform 150ms ease, opacity 150ms ease;
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease;
 }
 
-.dialogOpen { transform: translateY(0); opacity: 1; }
+.dialogOpen {
+  transform: translateY(0);
+  opacity: 1;
+}
 
 .header {
   display: flex;
@@ -73,7 +89,11 @@
   margin-bottom: 8px;
 }
 
-.title { font-size: 16px; font-weight: 600; color: #e5e7eb; }
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
 
 .close {
   background: transparent;
@@ -83,6 +103,10 @@
   cursor: pointer;
   border-radius: 8px;
 }
-.close:hover { color: #f3f4f6; }
-.close:focus-visible { outline: 2px solid #60a5fa; outline-offset: 2px; }
-
+.close:hover {
+  color: #f3f4f6;
+}
+.close:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}

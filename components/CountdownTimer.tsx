@@ -18,15 +18,15 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
   const ActiveCounter = counterMap[effectiveId];
 
   const isVideo =
-    (counter.mediaType ?? 'IMAGE') === 'VIDEO' || (counter.mediaType ?? 'image') === 'video';
-  const rawBg = (counter.bgUrl ?? '').trim();
-  const effectiveBg = rawBg.length > 0 ? rawBg : '/bg/default_bg.jpeg';
+    (counter.mediaType ?? "IMAGE") === "VIDEO" || (counter.mediaType ?? "image") === "video";
+  const rawBg = (counter.bgUrl ?? "").trim();
+  const effectiveBg = rawBg.length > 0 ? rawBg : "/bg/default_bg.jpeg";
   const effectivePoster =
-    counter.posterUrl && counter.posterUrl.length > 0 ? counter.posterUrl : '/bg/default_p.jpeg';
+    counter.posterUrl && counter.posterUrl.length > 0 ? counter.posterUrl : "/bg/default_p.jpeg";
   const [videoError, setVideoError] = useState(false);
   const canUseVideo = isVideo && rawBg.length > 0 && !videoError;
 
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
   const qrUrl = `${baseUrl}/${counter.slug}`;
 
   const handleQRClick = () => {
@@ -37,29 +37,29 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
     const fontsToLoad: string[] = [];
 
     if (counter.titleFont) {
-      const font = fontOptions.find(f => f.id === counter.titleFont);
+      const font = fontOptions.find((f) => f.id === counter.titleFont);
       if (font) fontsToLoad.push(font.family);
     }
 
     if (counter.descriptionFont && counter.descriptionFont !== counter.titleFont) {
-      const font = fontOptions.find(f => f.id === counter.descriptionFont);
+      const font = fontOptions.find((f) => f.id === counter.descriptionFont);
       if (font) fontsToLoad.push(font.family);
     }
 
     if (fontsToLoad.length === 0) return;
 
-    const linkId = 'google-fonts-countdown';
+    const linkId = "google-fonts-countdown";
     let linkElement = document.getElementById(linkId) as HTMLLinkElement | null;
 
     if (!linkElement) {
-      linkElement = document.createElement('link');
+      linkElement = document.createElement("link");
       linkElement.id = linkId;
-      linkElement.rel = 'stylesheet';
+      linkElement.rel = "stylesheet";
       document.head.appendChild(linkElement);
     }
 
     // Build Google Fonts URL
-    const fontFamilies = fontsToLoad.map(f => `family=${f}`).join('&');
+    const fontFamilies = fontsToLoad.map((f) => `family=${f}`).join("&");
     linkElement.href = `https://fonts.googleapis.com/css2?${fontFamilies}&display=swap`;
 
     return () => {
@@ -83,10 +83,7 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
           onError={() => setVideoError(true)}
         />
       ) : (
-        <div
-          className={styles.bg}
-          style={{ backgroundImage: `url(${effectiveBg})` }}
-        />
+        <div className={styles.bg} style={{ backgroundImage: `url(${effectiveBg})` }} />
       )}
       <div className={styles.content}>
         <div>

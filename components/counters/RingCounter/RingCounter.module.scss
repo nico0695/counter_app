@@ -1,9 +1,42 @@
-.root { display: grid; grid-auto-flow: column; gap: clamp(8px, 2vw, 16px); }
-.ring { position: relative; width: 100px; height: 100px; }
-.svg { transform: rotate(-90deg); }
-.bg { fill: none; stroke: rgba(255,255,255,0.12); stroke-width: 10; }
-.fg { fill: none; stroke: rgba(255,255,255,0.9); stroke-width: 10; stroke-linecap: round; transition: stroke-dasharray 0.6s ease; }
-.center { position: absolute; inset: 0; display: grid; place-items: center; }
-.value { font-variant-numeric: tabular-nums; font-size: clamp(16px, 4.5vw, 28px); }
-.label { font-size: clamp(10px, 2.4vw, 12px); opacity: 0.8; }
-.finished { opacity: 0.8; }
+.root {
+  display: grid;
+  grid-auto-flow: column;
+  gap: clamp(8px, 2vw, 16px);
+}
+.ring {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.svg {
+  transform: rotate(-90deg);
+}
+.bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 10;
+}
+.fg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+.center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.value {
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(16px, 4.5vw, 28px);
+}
+.label {
+  font-size: clamp(10px, 2.4vw, 12px);
+  opacity: 0.8;
+}
+.finished {
+  opacity: 0.8;
+}

@@ -1,3 +1,5 @@
+export type MediaType = "IMAGE" | "VIDEO";
+
 export interface ICounter {
   id: string;
   slug: string;
@@ -11,7 +13,7 @@ export interface ICounter {
   descriptionSize?: string | null;
   bgUrl?: string | null;
   posterUrl?: string | null;
-  mediaType: string;
+  mediaType: MediaType;
   counter?: string | null;
   targetDate: Date;
   timezone: string;

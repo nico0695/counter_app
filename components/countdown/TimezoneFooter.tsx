@@ -15,11 +15,7 @@ export default function TimezoneFooter({ targetDate }: TimezoneFooterProps) {
 
   const formattedTarget = useMemo(() => {
     try {
-      return formatInTimeZone(
-        new Date(targetDate.toISOString()),
-        tz,
-        'EEE d MMM yyyy HH:mm zzz'
-      );
+      return formatInTimeZone(new Date(targetDate.toISOString()), tz, "EEE d MMM yyyy HH:mm zzz");
     } catch {
       return new Date(targetDate.toISOString()).toUTCString();
     }

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
-import { usePathname as useNextPathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
-import styles from './TopNavButtons.module.scss';
+import { useLocale } from "next-intl";
+import { usePathname as useNextPathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import styles from "./TopNavButtons.module.scss";
 
 export default function LanguageSwitcher(): JSX.Element {
   const locale = useLocale();
@@ -11,15 +11,13 @@ export default function LanguageSwitcher(): JSX.Element {
   const pathname = useNextPathname();
 
   const switchLocale = () => {
-    const nextLocale = locale === 'en' ? 'es' : 'en';
-    const pathnameWithoutLocale = pathname.replace(/^\/(en|es)(\/|$)/, '/');
-    const newPath = `/${nextLocale}${
-      pathnameWithoutLocale === '/' ? '' : pathnameWithoutLocale
-    }`;
+    const nextLocale = locale === "en" ? "es" : "en";
+    const pathnameWithoutLocale = pathname.replace(/^\/(en|es)(\/|$)/, "/");
+    const newPath = `/${nextLocale}${pathnameWithoutLocale === "/" ? "" : pathnameWithoutLocale}`;
     router.push(newPath);
   };
 
-  const displayText = locale === 'es' ? 'EN' : 'ES';
+  const displayText = locale === "es" ? "EN" : "ES";
 
   return (
     <button

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
 
 export type CountdownParts = {
   days: number;
@@ -33,4 +33,3 @@ export function useCountdown(targetDateISO: string) {
 
   return { remainingMs, parts, isOver };
 }
-

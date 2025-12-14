@@ -37,7 +37,9 @@ export default function LoginPage() {
 
         <form className={styles.form} onSubmit={onSubmit}>
           <div className={styles.field}>
-            <label className={styles.label} htmlFor="email">{t("email")}</label>
+            <label className={styles.label} htmlFor="email">
+              {t("email")}
+            </label>
             <input
               id="email"
               className={styles.input}
@@ -52,7 +54,9 @@ export default function LoginPage() {
           </div>
 
           <div className={styles.field}>
-            <label className={styles.label} htmlFor="password">{t("password")}</label>
+            <label className={styles.label} htmlFor="password">
+              {t("password")}
+            </label>
             <input
               id="password"
               className={styles.input}
@@ -68,7 +72,9 @@ export default function LoginPage() {
 
           {error && <p className={styles.error}>{error}</p>}
 
-          <button className={styles.submit} type="submit">{t("submit")}</button>
+          <button className={styles.submit} type="submit">
+            {t("submit")}
+          </button>
 
           <p className={styles.hint}>{t("hint")}</p>
         </form>
