@@ -17,8 +17,7 @@ export default function CountdownTimer({ counter }: { counter: ICounter }) {
   const effectiveId = counterId && counterMap[counterId] ? counterId : defaultCounterId;
   const ActiveCounter = counterMap[effectiveId];
 
-  const isVideo =
-    (counter.mediaType ?? "IMAGE") === "VIDEO" || (counter.mediaType ?? "image") === "video";
+  const isVideo = (counter.mediaType ?? "IMAGE") === "VIDEO";
   const rawBg = (counter.bgUrl ?? "").trim();
   const effectiveBg = rawBg.length > 0 ? rawBg : "/bg/default_bg.jpeg";
   const effectivePoster =
