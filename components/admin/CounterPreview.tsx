@@ -7,6 +7,8 @@ import { fontOptions } from "@/lib/textStyles";
 import SocialLinks from "@/components/social/SocialLinks";
 import styles from "./CounterPreview.module.scss";
 
+type PreviewMode = "pc" | "mobile";
+
 export type PreviewData = {
   title: string;
   description: string;
@@ -31,6 +33,7 @@ export type PreviewData = {
 
 export default function CounterPreview({ data }: { data: PreviewData }) {
   const [videoError, setVideoError] = useState(false);
+  const [previewMode, setPreviewMode] = useState<PreviewMode>("pc");
 
   const counterId = data.counter || defaultCounterId;
   const effectiveId = counterId && counterMap[counterId] ? counterId : defaultCounterId;
@@ -95,8 +98,26 @@ export default function CounterPreview({ data }: { data: PreviewData }) {
 
   return (
     <div className={styles.previewContainer}>
-      <div className={styles.previewLabel}>Preview</div>
-      <div className={styles.previewFrame}>
+      <div className={styles.previewHeader}>
+        <div className={styles.previewLabel}>Preview</div>
+        <div className={styles.previewToggle}>
+          <button
+            type="button"
+            className={previewMode === "pc" ? styles.toggleActive : styles.toggleBtn}
+            onClick={() => setPreviewMode("pc")}
+          >
+            PC
+          </button>
+          <button
+            type="button"
+            className={previewMode === "mobile" ? styles.toggleActive : styles.toggleBtn}
+            onClick={() => setPreviewMode("mobile")}
+          >
+            Mobile
+          </button>
+        </div>
+      </div>
+      <div className={previewMode === "mobile" ? styles.previewFrameMobile : styles.previewFrame}>
         <div className={styles.countdown}>
           {canUseVideo ? (
             <video
