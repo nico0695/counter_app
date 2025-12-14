@@ -37,6 +37,9 @@ export async function generateMetadata({
     ),
     title: messages.metadata?.title || "Countdown Generator",
     description: messages.metadata?.description || "Create and share countdowns",
+    icons: {
+      icon: "/favicon.ico",
+    },
   };
 }
 
