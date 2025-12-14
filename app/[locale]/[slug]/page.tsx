@@ -2,9 +2,59 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import CountdownTimer from "@/components/CountdownTimer";
 import type { ICounter } from "@/interfaces/counter.interfaces";
+import type { Metadata } from "next";
 
 interface Props {
   params: { locale: string; slug: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug, locale } = await Promise.resolve(params);
+
+  const counter = await prisma.counter.findUnique({
+    where: { slug },
+    select: {
+      title: true,
+      description: true,
+      enabled: true,
+    },
+  });
+
+  if (!counter || !counter.enabled) {
+    return {
+      title: "Countdown Not Found",
+      description: "This countdown does not exist or is no longer available.",
+    };
+  }
+
+  const title = counter.title || "Countdown Timer";
+  const description = counter.description || "Check out this countdown!";
+  const url = `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/${locale}/${slug}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url,
+      images: [
+        {
+          url: `/${locale}/${slug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`/${locale}/${slug}/opengraph-image`],
+    },
+  };
 }
 
 export default async function CounterLanding({ params }: Props) {
