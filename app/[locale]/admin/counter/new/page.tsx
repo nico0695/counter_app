@@ -20,6 +20,7 @@ export default function NewCounterPage() {
       <div className={styles.content}>
         <CounterForm
           mode="create"
+          showPreview={true}
           onSuccess={() => {
             router.push("/admin/dashboard");
           }}

@@ -47,6 +47,7 @@ export default function EditCounterClient({ counter }: { counter: Counter }) {
         <CounterForm
           mode="edit"
           counter={counter}
+          showPreview={true}
           onSuccess={() => {
             show(t("saved"));
             router.push("/admin/dashboard");
