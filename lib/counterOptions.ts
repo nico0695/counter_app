@@ -1,7 +1,7 @@
 export type CounterOption = { id: string; name: string };
 
 export const counterOptions: CounterOption[] = [
-  { id: "colon", name: "Clásico (DD:HH:MM:SS)" },
+  { id: "colon", name: "Clásico (con etiquetas)" },
   { id: "blocks", name: "Bloques" },
   { id: "flipclock", name: "Flip Clock" },
   { id: "ring", name: "Anillos" },

@@ -11,7 +11,7 @@ function Ring({ label, value, max }: { label: string; value: number; max: number
   const dash = circumference * progress;
   return (
     <div className={styles.ring}>
-      <svg width="100" height="100" viewBox="0 0 100 100" className={styles.svg}>
+      <svg viewBox="0 0 100 100" className={styles.svg} aria-hidden="true">
         <circle cx="50" cy="50" r={radius} className={styles.bg} />
         <circle
           cx="50"
