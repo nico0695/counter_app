@@ -1,0 +1,55 @@
+# bp-workspace/config.yaml — seeded by bp-init, validated against schemas/bp-config.schema.yaml
+version: "1.0.0"
+product:
+  name: "counter_app"
+  domain: >-
+    Countdown Generator — a Next.js web app that lets registered users create and publish
+    customizable countdown/event pages (title, description, background image or video,
+    target date and timezone, visual style, social links) at public shareable URLs, with
+    an admin dashboard for managing counters and users (role-based: USER capped by
+    maxCounters, ADMIN unrestricted).
+  glossary:
+    Counter: "The core content entity — a countdown to a target date, identified by a unique slug and published at /{locale}/{slug}."
+    Counter style / variant: "One of the pluggable visual countdown renderers (colon, blocks, flipclock, ring, bar, glass, segmentlcd) registered in lib/counterOptions.ts and components/counters/index.ts."
+    Slug: "URL-safe unique identifier for a counter's public page, auto-generated from its title with collision suffixing."
+rigor_level: standard
+conventions:
+  persisted_language: en
+  chat_language: es
+  chat_language_source: inferred
+capabilities:
+  rg: { available: true, checked_at: "2026-08-04T15:26:26Z" }
+  gh: { available: true, checked_at: "2026-08-04T15:26:26Z" }
+  ast: { available: false, checked_at: "2026-08-04T15:26:26Z" }
+sdd_lite_integration:
+  present: true
+  runtime_root: "./sdd-lite"
+  inbox_path: "./sdd-lite/openspec/inbox"
+engine:
+  version: "0.1.0"
+  installed_at: "2026-08-04T15:26:26Z"
+  updated_at: "2026-08-04T15:26:26Z"
+ai_setups:
+  detected:
+    - claude_code
+    - agents
+  configured:
+    - claude_code
+    - agents
+  skills_installed:
+    - target: claude_code
+      method: copy
+      installed_at: "2026-08-04T15:26:26Z"
+    - target: agents
+      method: copy
+      installed_at: "2026-08-04T15:26:26Z"
+  wrappers_injected:
+    - ai: claude_code
+      target_file: CLAUDE.md
+      injected_at: "2026-08-04T15:26:26Z"
+    - ai: agents
+      target_file: AGENTS.md
+      injected_at: "2026-08-04T15:26:26Z"
+metadata:
+  created_at: "2026-08-04T15:26:26Z"
+  updated_at: "2026-08-04T15:26:26Z"
