@@ -1,1 +1,6 @@
-objectives: []
+objectives:
+  - slug: tech-debt-inventory
+    type: code-consultation
+    lifecycle_status: in_progress
+    updated_at: "2026-08-04"
+    digest: "Full project technical debt inventory — maintainability and architecture focus"

@@ -1,0 +1,69 @@
+objective:
+  slug: tech-debt-inventory
+  type: code-consultation
+  lifecycle_status: in_progress
+  created_at: "2026-08-04"
+  updated_at: "2026-08-04"
+
+rigor_level: standard
+execution_mode: auto
+
+interview:
+  status: closed
+  rounds: 1
+  notes_artifact: interview-notes.md
+  notes_digest: working
+
+checkpoints: []
+decisions:
+  - key: scope
+    value: "full_project"
+    detail: "Entire project scope: app/, components/, lib/, store/, prisma/, interfaces/, consts/, messages/"
+    made_at: "2026-08-04"
+  - key: priority
+    value: "complete_tech_debt_inventory"
+    detail: "Focus on maintainability and architecture"
+    made_at: "2026-08-04"
+  - key: execution_mode
+    value: auto
+    detail: "Chain phases automatically"
+    made_at: "2026-08-04"
+
+complexity:
+  score: 6
+  band: complex
+  breakdown: "surface(2) + questions(2) + cross_cutting(2)"
+
+artifacts:
+  - path: objectives/tech-debt-inventory/interview-notes.md
+    status: approved
+    summary: "Interview notes for full project tech debt consultation"
+  - path: objectives/tech-debt-inventory/surface-map.md
+    status: approved
+    summary: "Surface map: 19 app routes, 7 counter variants, Prisma+SQLite, NextAuth v4, next-intl v4"
+  - path: objectives/tech-debt-inventory/analysis.md
+    status: approved
+    summary: "12 facts, 5 inferences, 3 unknowns — SQLite prod risk, auto-reg no rate limit, 15-field Counter, 38x as any, no tests"
+  - path: bp-workspace/audits/audit-tech-debt-inventory.md
+    status: approved
+    summary: "Final audit artifact with prioritized recommendations"
+
+next_action: completed
+lifecycle_status: approved
+key_files:
+  - path: "package.json"
+    note: "Dependency versions — Next.js 14.2.5, next-auth v4, next-intl v4.5.8, Prisma 5.18"
+  - path: "prisma/schema.prisma"
+    note: "Data model — User/Counter with SQLite, 12+ styling fields on Counter"
+  - path: "lib/auth.ts"
+    note: "NextAuth config — credentials provider, auto-registration, JWT sessions"
+  - path: "lib/prisma.ts"
+    note: "Prisma singleton with globalForPrisma pattern"
+  - path: "lib/counterOptions.ts"
+    note: "Counter variant registry — 7 options, manual mapping"
+  - path: "components/counters/index.ts"
+    note: "Dynamic imports with ssr:false for all 7 counter variants"
+  - path: "middleware.ts"
+    note: "next-intl middleware with locale prefix always"
+  - path: "next.config.mjs"
+    note: "Experimental serverActions with 2mb bodySizeLimit"

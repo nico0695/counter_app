@@ -1,0 +1,56 @@
+objective:
+  slug: testing-implementation-plan
+  type: requirements-refinement
+  lifecycle_status: approved
+  created_at: "2026-08-05"
+  updated_at: "2026-08-05"
+
+rigor_level: standard
+execution_mode: auto
+
+interview:
+  status: closed
+  rounds: 1
+  notes_artifact: interview-notes.md
+  notes_digest: "Testing implementation plan — Vitest + RTL for unit, Playwright for E2E"
+
+checkpoints:
+  - type: scope_validation
+    resolved_at: "2026-08-05"
+    response: confirmed
+  - type: artifact_approval
+    resolved_at: "2026-08-05"
+    response: approved
+
+decisions:
+  - key: test_runner
+    value: vitest
+    detail: "Faster than Jest, native ESM, zero config"
+  - key: component_testing
+    value: react-testing-library
+    detail: "Industry standard, user-behavior focused"
+  - key: e2e
+    value: playwright
+    detail: "Better DX than Cypress, parallel execution"
+  - key: phase1_scope
+    value: "useCountdown + CountdownTimer + auth"
+    detail: "Core logic and most-used component"
+  - key: phase2_scope
+    value: "login + dashboard E2E flows"
+    detail: "Critical user journeys"
+
+complexity:
+  score: 4
+  band: standard
+  breakdown: "surface(1) + questions(1) + cross_cutting(2)"
+
+artifacts:
+  - path: objectives/testing-implementation-plan/interview-notes.md
+    status: approved
+    summary: "Interview notes for testing requirements"
+  - path: bp-workspace/ideas/rfc-testing-implementation-plan.md
+    status: approved
+    summary: "RFC with implementation plan by phases"
+
+next_action: handoff_ready
+lifecycle_status: approved

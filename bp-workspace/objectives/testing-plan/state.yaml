@@ -1,0 +1,11 @@
+slug: testing-plan
+type: requirements-refinement
+lifecycle_status: in_progress
+updated_at: "2026-08-05"
+mode: auto
+worker_mode: inline-sequential
+complexity: standard (2+1+1)
+next_action: interview
+decisions: []
+interview_rounds: 0
+artifact_digests: {}
