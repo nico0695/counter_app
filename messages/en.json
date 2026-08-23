@@ -59,6 +59,13 @@
     "saved": "Saved successfully"
   },
   "form": {
+    "step_essentials": "Essentials",
+    "step_background": "Background",
+    "step_styling": "Styling",
+    "step_social": "Links & social",
+    "wizardNext": "Next",
+    "wizardBack": "Back",
+    "wizardProgressLabel": "Creation steps",
     "title": "Title",
     "titlePlaceholder": "Ex: Product Launch",
     "titleMinLength": "Title must be at least 3 characters",

@@ -59,6 +59,13 @@
     "saved": "Guardado exitosamente"
   },
   "form": {
+    "step_essentials": "Datos esenciales",
+    "step_background": "Fondo",
+    "step_styling": "Estilo",
+    "step_social": "Links y redes",
+    "wizardNext": "Siguiente",
+    "wizardBack": "Atrás",
+    "wizardProgressLabel": "Pasos de creación",
     "title": "Título",
     "titlePlaceholder": "Ej: Lanzamiento",
     "titleMinLength": "El título debe tener al menos 3 caracteres",

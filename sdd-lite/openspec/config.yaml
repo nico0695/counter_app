@@ -2,7 +2,7 @@ version: "0.1"
 project:
   name: counter_app
   slug: counter-app
-  root: /Users/nicolasschmidt/Documents/develop/counter_app
+  root: /opt/micloud/filebrowser/srv/dev_workspace/github/projects/counter_app/repo
   package_root: harness/sdd-lite
   runtime_root: ./sdd-lite
   stack:
@@ -50,11 +50,11 @@ quality_commands:
     - pnpm format
 
 bootstrap:
-  status: created
+  status: refreshed
   strategy: shallow-high-signal
   generated_at: "2026-08-04T14:54:43Z"
   generated_by: sddl-init
-  last_validated_at: "2026-08-04T14:54:43Z"
+  last_validated_at: "2026-08-22T21:23:23Z"
   refresh_recommended: false
   refresh_reason_codes: []
   observed_files:
@@ -66,6 +66,10 @@ bootstrap:
       - README.md
       - AGENTS.md
       - CLAUDE.md
+      - docs/dev/architecture.md
+      - docs/dev/contributing.md
+      - docs/business/product-overview.md
+      - docs/business/features-and-rules.md
     tool_configs:
       - tsconfig.json
       - eslint.config.mjs
@@ -78,9 +82,11 @@ bootstrap:
       - interfaces
       - store
       - consts
+      - styles
     test_roots: []
     config_roots:
       - .
+      - docs
 
 conventions:
   persisted_language: en
