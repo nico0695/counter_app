@@ -270,3 +270,103 @@
     transform: rotate(360deg);
   }
 }
+
+/* ---------- Wizard (create mode) ---------- */
+
+.wizardProgress {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  flex-wrap: wrap;
+}
+
+.wizardStep {
+  font-size: 0.85rem;
+  color: #8b8b8b;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.wizardStepActive {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.wizardStepDone {
+  color: #9fd6a5;
+  border-color: rgba(159, 214, 165, 0.35);
+}
+
+.wizardPane {
+  display: block;
+}
+
+.wizardPaneHidden {
+  display: none;
+}
+
+.wizardBackBtn {
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* ---------- Collapsibles (edit mode) ---------- */
+
+.collapseGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.collapseItem {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.collapseSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  list-style: none;
+  background: rgba(255, 255, 255, 0.04);
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+  }
+}
+
+.collapseChevron {
+  transition: transform 0.15s ease;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.collapseItem[open] > .collapseSummary .collapseChevron {
+  transform: rotate(180deg);
+}
+
+.collapseBody {
+  padding: 1rem;
+}

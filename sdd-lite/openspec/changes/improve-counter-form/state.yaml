@@ -1,0 +1,182 @@
+version: '0.1'
+change_name: improve-counter-form
+objective: refactor-rework
+mode: lite
+complexity_assessment:
+  route: continue-lite
+  summary: UI/UX rework bounded to admin form components, styles, and i18n messages; no data model, action-contract,
+    or routing changes expected.
+  confidence: high
+  recorded_at: '2026-08-22T21:55:03Z'
+lifecycle_status: qa_complete
+current_stage: sddl-qa-review
+stages:
+  sddl-deep-explorer:
+    status: skipped
+    notes: Lightweight exploration already performed during proposal framing; no blocking unknown remains.
+  sddl-proposal:
+    status: completed
+    started_at: '2026-08-22T21:56:36Z'
+    completed_at: '2026-08-22T22:17:19Z'
+    last_updated_at: '2026-08-22T22:17:19Z'
+    notes: Proposal approved by the user with resolved framing decisions (wizard create / collapsible
+      edit, shared structure, full field accessibility, dead-code removal).
+  sddl-spec:
+    status: completed
+    started_at: '2026-08-22T22:20:40Z'
+    completed_at: '2026-08-22T22:20:40Z'
+    last_updated_at: '2026-08-22T22:20:40Z'
+    notes: Spec formalized from the approved proposal; two design-bound questions carried forward with
+      Needed Before design.
+  sddl-design:
+    status: completed
+    started_at: '2026-08-22T22:27:12Z'
+    completed_at: '2026-08-22T22:27:12Z'
+    last_updated_at: '2026-08-22T22:27:12Z'
+    notes: Section-block decomposition with wizard/collapsible shells designed; dead-code removal extended
+      to EditCounterForm and orphaned SCSS pending user confirmation.
+  sddl-plan:
+    status: completed
+    started_at: '2026-08-22T22:30:38Z'
+    completed_at: '2026-08-22T22:30:38Z'
+    last_updated_at: '2026-08-22T22:30:38Z'
+    notes: Five-stage linear plan written; execution gated on explicit plan approval, then per-stage approvals.
+  sddl-executor:
+    status: completed
+    started_at: '2026-08-22T22:47:25Z'
+    last_updated_at: '2026-08-23T08:15:00Z'
+    notes: All 5 stages (S1-S5) completed. QA report produced.
+    completed_at: '2026-08-23T08:15:00Z'
+  sddl-qa-review:
+    status: completed
+    started_at: '2026-08-23T08:15:00Z'
+    completed_at: '2026-08-23T08:15:00Z'
+    last_updated_at: '2026-08-23T08:15:00Z'
+    notes: 'Final closeout QA: all 8 ACs pass statically. E2E walkthrough deferred to deploy.'
+artifacts:
+  state: sdd-lite/openspec/changes/improve-counter-form/state.yaml
+  proposal: sdd-lite/openspec/changes/improve-counter-form/proposal.md
+  spec: sdd-lite/openspec/changes/improve-counter-form/spec.md
+  design: sdd-lite/openspec/changes/improve-counter-form/design.md
+  plan: sdd-lite/openspec/changes/improve-counter-form/plan.md
+  execution_log: sdd-lite/openspec/changes/improve-counter-form/execution-log.md
+  qa_report: sdd-lite/openspec/changes/improve-counter-form/qa-report.md
+checkpoints:
+- id: cp-proposal-approval
+  type: stage_approval
+  stage: sddl-proposal
+  summary: Proposal review with four open framing questions.
+  question: Approve proposal scope (shared structure, wizard vs collapsibles, field ordering, dead-code
+    removal)?
+  free_input_allowed: true
+  created_at: '2026-08-22T21:56:36Z'
+- id: cp-spec-phase-validation
+  type: phase_validation
+  stage: sddl-spec
+  summary: Spec carries medium risks and design-bound open questions.
+  question: Validate spec.md (scope boundary, expected behavior, 8 acceptance criteria) and approve advancing
+    to sddl-design?
+  free_input_allowed: true
+  created_at: '2026-08-22T22:20:40Z'
+- id: cp-design-phase-validation
+  type: phase_validation
+  stage: sddl-design
+  summary: Design ready; extends dead-code removal beyond spec AC7 (EditCounterForm.tsx + orphaned SCSS).
+  question: Approve design.md (section decomposition, wizard/collapsible shells, extended dead-code cleanup)
+    and advance to sddl-plan?
+  free_input_allowed: true
+  created_at: '2026-08-22T22:27:12Z'
+- id: cp-plan-phase-validation
+  type: phase_validation
+  stage: sddl-plan
+  summary: Five-stage linear plan ready; execution-ready pending plan approval.
+  question: Approve plan.md and start execution stage S1-extract-sections?
+  free_input_allowed: true
+  created_at: '2026-08-22T22:30:38Z'
+  response:
+    selected_option_id: approve-and-start-S1
+    free_text: User approved plan and S1 start in chat.
+    responded_at: '2026-08-22T22:47:25Z'
+  resolved_at: '2026-08-22T22:47:25Z'
+- id: cp-s2-stage-approval
+  type: stage_approval
+  stage: sddl-executor
+  summary: S2-wizard-create execution approval.
+  question: Approve executing S2-wizard-create?
+  free_input_allowed: true
+  created_at: '2026-08-22T22:59:07Z'
+  response:
+    selected_option_id: approved
+    free_text: User approved in chat (si, apruebo).
+    responded_at: '2026-08-22T22:59:07Z'
+  resolved_at: '2026-08-22T22:59:07Z'
+- id: cp-s3-stage-approval
+  type: stage_approval
+  stage: sddl-executor
+  summary: S3-collapsible-edit execution approval.
+  question: Approve executing S3-collapsible-edit?
+  free_input_allowed: true
+  created_at: '2026-08-22T23:15:07Z'
+  response:
+    selected_option_id: approved
+    free_text: User approved in chat.
+    responded_at: '2026-08-22T23:15:07Z'
+  resolved_at: '2026-08-22T23:15:07Z'
+- id: cp-s4-stage-approval
+  type: stage_approval
+  stage: sddl-executor
+  summary: S4-remove-dead-code execution approval.
+  question: Approve S4?
+  free_input_allowed: true
+  created_at: '2026-08-23T08:00:00Z'
+  response:
+    selected_option_id: approved
+    free_text: User approved.
+    responded_at: '2026-08-23T08:00:00Z'
+  resolved_at: '2026-08-23T08:00:00Z'
+- id: cp-s5-qa-approval
+  type: stage_approval
+  stage: sddl-qa-review
+  summary: S5-closeout QA completed with pass_with_warnings (E2E deferred).
+  question: Approve QA verdict and proceed to rebuild/deploy or commit?
+  free_input_allowed: true
+  created_at: '2026-08-23T08:15:00Z'
+decisions:
+- id: dec-proposal-scope
+  checkpoint_id: cp-proposal-approval
+  selected_option_id: approve-with-decisions
+  free_text: Same section structure for create and edit; wizard multi-step for create; collapsible all-visible
+    sections for edit; all fields accessible grouped by importance (title+date, background, styling, social);
+    delete CreateCounterForm.tsx in this change.
+  rationale: User answered all four open questions affirmatively during interactive proposal review.
+  recorded_at: '2026-08-22T21:56:36Z'
+- id: dec-plan-approval-s1
+  checkpoint_id: cp-plan-phase-validation
+  selected_option_id: approve-and-start-s1
+  rationale: User approved the five-stage plan and immediate S1 execution during interactive review.
+  recorded_at: '2026-08-22T22:47:25Z'
+- id: dec-s2-approved
+  checkpoint_id: cp-s2-stage-approval
+  selected_option_id: approved
+  rationale: Interactive session stage approval per plan discipline.
+  recorded_at: '2026-08-22T22:59:07Z'
+- id: dec-s3-approved
+  checkpoint_id: cp-s3-stage-approval
+  selected_option_id: approved
+  rationale: Interactive session stage approval per plan discipline.
+  recorded_at: '2026-08-22T23:15:07Z'
+- id: dec-s4-approved
+  checkpoint_id: cp-s4-stage-approval
+  selected_option_id: approved
+  rationale: User approval.
+  recorded_at: '2026-08-23T08:00:00Z'
+open_risks:
+- id: risk-shared-component
+  summary: CounterForm is shared between create and edit modes; UX changes may affect both until scope
+    is decided.
+  severity: medium
+next_action:
+  kind: wait_for_approval
+  summary: Approve rebuild + deploy + E2E walkthrough, or commit and push feature branch.
+created_at: '2026-08-22T21:56:36Z'
+updated_at: '2026-08-23T08:15:00Z'
